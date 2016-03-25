@@ -1,31 +1,32 @@
 "use script";
 
 class Node {
-  constructor(data, parent=null, children=[]) {
-    this.data = data;
+  constructor(nodeName, parent=null, children=[]) {
+    this.nodeName = nodeName;
     this.parent = parent;
     this.children = children;
+    
+    let addButton = document.createElement('div');
+    addButton.className = "node-view_button add";
+    
+    let delButton = document.createElement('div');
+    addButton.className = "node-view_button del";
+    
+    let nodeElement = document.createElement('div');
+    nodeElement.className = "node-view";
+    nodeElement.appendChild(addButton);
+    nodeElement.appendChild(delButton);
+    
+    this.element = nodeElement;
   }
   
-  findIndexOfChild(data) {
-    for(let i = 0, len = this.children.length; i < len; i++) {
-      if(data === this.children[i].data) {
-        return i;
-      }
-    }
-    return -1;
+  addChild(nodeName) {
+    let childNode = new Node(nodeName, this);
+    this.element.appendChild(childNode.element);
   }
   
-  addChild(node) {
-    this.children.push(node);
-  }
-  
-  removeChild(data) {
-    let idx = this.findIndexOfChild(data);
-    if(idx === -1) {
-      throw new Error('Node to remove does not exists');
-    }
-    return this.children[idx];
+  remove() {
+    this.element.remove();
   }
 }
 
@@ -87,4 +88,46 @@ class Tree {
       currentNode = queue.shift();
     }
   }
+}
+
+class NodeView {
+  constructor(nodeName) {
+    let addButton = document.createElement('div');
+    addButton.className = "node-view_button add";
+    
+    let delButton = document.createElement('div');
+    addButton.className = "node-view_button del";
+    
+    let nodeElement = document.createElement('div');
+    nodeElement.className = "node-view";
+    nodeElement.appendChild(addButton);
+    nodeElement.appendChild(delButton);
+    
+    this._view = nodeElement;
+    this._model = 
+  }
+  
+  add() {
+    let nodeName = prompt("What's the name of this node");
+    if(nodeName) {
+      
+    }
+  }
+}
+
+class TreeView {
+  constructor(element) {
+    this._rootView = element;
+    this._treeModel = new Tree(element);
+  }
+  
+  add() {
+    
+  }
+  
+  remove() {
+    
+  }
+  
+  
 }

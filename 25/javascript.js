@@ -7,7 +7,11 @@
     if(e.target.className === 'search-button') {
       console.log('search');
     } else if (e.target.className === 'add-button') {
-      console.log('add');
+      let nodeName = prompt("New Node Name");
+      if(nodeName) {
+        let node = createNode(nodeName);
+        document.getElementById('tree-panel').appendChild(node);
+      }
     }
   });
   

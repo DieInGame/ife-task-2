@@ -34,6 +34,17 @@
     
     nodeElement.addEventListener('click', (e) => {
       e.stopPropagation();
+      if(e.target.className === "node-view_node-name") {
+        
+      } else if(e.target.className === "node-view_button add") {
+        let childNodeName = prompt("Child Node Name");
+        if(childNodeName) {
+          let node = createNode(childNodeName);
+          e.target.parentNode.appendChild(node);
+        }
+      } else if(e.target.className === "node-view_button del") {
+        
+      }
     });
     
     return nodeElement;

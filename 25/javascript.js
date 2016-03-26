@@ -77,7 +77,8 @@
       let isTargetNode = (currentNode != rootNode && ~currentNode.getAttribute('value').indexOf(searchString));
       
       containTargetNode && currentNode.classList.remove('fold');
-      isTargetNode && currentNode.classList.add('highlight');
+      if(isTargetNode) currentNode.classList.add('highlight');
+      else currentNode.classList.remove('highlight');
       
       return containTargetNode || isTargetNode;
     })(rootNode);

@@ -27,15 +27,20 @@
     delButton.className = "node-view_button del";
     
     let nodeElement = document.createElement('div');
-    nodeElement.className = "node-view";
+    nodeElement.className = "node-view fold";
     nodeElement.appendChild(nameTag);
     nodeElement.appendChild(addButton);
     nodeElement.appendChild(delButton);
     
     nodeElement.addEventListener('click', (e) => {
       e.stopPropagation();
-      if(e.target.className === "node-view_node-name") {
-        
+      if(~e.target.className.indexOf("node-view_node-name")) {
+        let node = e.target.parentNode;
+        if(~node.className.indexOf("fold")) {
+          node.className = node.className.replace("fold", "");
+        } else {
+          node.className += "fold";
+        }
       } else if(e.target.className === "node-view_button add") {
         let childNodeName = prompt("Child Node Name");
         if(childNodeName) {

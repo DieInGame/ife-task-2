@@ -47,6 +47,10 @@ html, body { margin: 0; border: 0; padding: 0; height: 100% }
   margin-left: 15px;
 }
 
+.node-view.fold .node-view {
+  display: none;
+}
+
 .node-view .node-view_node-name {
   color: #333;
   font-size: 20px;
@@ -60,13 +64,18 @@ html, body { margin: 0; border: 0; padding: 0; height: 100% }
 }
 
 .node-view .node-view_node-name::before {
-  content: "\25B6";
+  content: "\25BE";
+  padding-right: 10px;
+}
+
+.node-view.fold .node-view_node-name::before {
+  content: "\25B8";
 }
 
 .node-view .node-view_button {
   color: #333;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 36px;
   width: 36px;
   height: 36px;

@@ -48,7 +48,8 @@
           }
         }
       } else if(e.target.className === "node-view_button del") {
-        
+        let thisNode = e.target.parentNode;
+        thisNode.remove();
       }
     });
     

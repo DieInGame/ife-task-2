@@ -61,10 +61,17 @@ html, body { margin: 0; border: 0; padding: 0; height: 100% }
   left: 0;
   top: 0;
   padding: 0 5px;
+  overflow: hidden;
+}
+
+.node-view.highlight > .node-view_node-name {
+  color: #FF5722;
+  font-weight: bold;
 }
 
 .node-view .node-view_node-name::before {
   content: "\25BE";
+  color: #333;
   padding-right: 10px;
 }
 

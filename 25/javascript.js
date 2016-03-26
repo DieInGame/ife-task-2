@@ -35,17 +35,17 @@
     nodeElement.addEventListener('click', (e) => {
       e.stopPropagation();
       if(~e.target.className.indexOf("node-view_node-name")) {
-        let node = e.target.parentNode;
-        if(~node.className.indexOf("fold")) {
-          node.className = node.className.replace("fold", "");
-        } else {
-          node.className += "fold";
-        }
+        let thisNode = e.target.parentNode;
+        toggleFold(thisNode);
       } else if(e.target.className === "node-view_button add") {
         let childNodeName = prompt("Child Node Name");
         if(childNodeName) {
-          let node = createNode(childNodeName);
-          e.target.parentNode.appendChild(node);
+          let childNode = createNode(childNodeName);
+          let thisNode = e.target.parentNode;
+          thisNode.appendChild(childNode);
+          if(~thisNode.className.indexOf("fold")) {
+            thisNode.className = thisNode.className.replace("fold", "");
+          }
         }
       } else if(e.target.className === "node-view_button del") {
         
@@ -53,6 +53,14 @@
     });
     
     return nodeElement;
+  }
+  
+  function toggleFold(node) {
+    if(~node.className.indexOf("fold")) {
+      node.className = node.className.replace("fold", "");
+    } else {
+      node.className += "fold";
+    }
   }
   
 })();

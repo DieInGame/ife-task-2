@@ -80,7 +80,6 @@
       for(let i = 0, len = currentNode.children.length; i < len; i++) {
         let childNode = currentNode.children[i];
         if(childNode.classList.contains('node-view')) {
-          if(recurse(childNode))
           containTargetNode = recurse(childNode) || containTargetNode;
         }
       }

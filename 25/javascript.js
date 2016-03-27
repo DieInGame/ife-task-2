@@ -19,11 +19,11 @@
         DFS(tree, searchString);
       }
     } else if (e.target.className === 'add-button') {
-      // if ad button clicked
+      // if add button clicked
       
       let nodeName = prompt("New Node Name");
       if(nodeName) {
-        // if the new node new is given
+        // if the new node name is given
         let node = createNode(nodeName);
         tree.appendChild(node);
       }

@@ -52,21 +52,25 @@
     nodeElement.addEventListener('click', (e) => {
       e.stopPropagation();
       
-      if(~e.target.className.indexOf("node-view_node-name")) {
+      let thisNode = e.target.parentNode;
+      
+      if(e.target.classList.contains('node-view_node-name')) {
         // if name tag clicked, fold/unfold this node
-        let thisNode = e.target.parentNode;
         thisNode.classList.toggle("fold");
-      } else if(e.target.className === "node-view_button add") {
-        let childNodeName = prompt("Child Node Name");
-        if(childNodeName) {
-          let childNode = createNode(childNodeName);
-          let thisNode = e.target.parentNode;
-          thisNode.appendChild(childNode);
-          thisNode.classList.remove('fold');
+      } else if(e.target.classList.contains('node-view_button')) {
+        // if buttons clicked
+        if(e.target.classList.contains('add')) {
+          // if add button clicked
+          let childNodeName = prompt("Enter Child Node Name");
+          if(childNodeName) {
+            let childNode = createNode(childNodeName);
+            thisNode.appendChild(childNode);
+            thisNode.classList.remove('fold'); // unfold this node to show the new child node
+          }
+        } else if(e.target.classList.contains('del')) {
+          // if remove button clicked
+          thisNode.remove();
         }
-      } else if(e.target.className === "node-view_button del") {
-        let thisNode = e.target.parentNode;
-        thisNode.remove();
       }
     });
     
@@ -90,7 +94,7 @@
       if(isTargetNode) currentNode.classList.add('highlight');
       else currentNode.classList.remove('highlight');
       
-      return containTargetNode || isTargetNode;
+      return containTargetNode || isTargetNode; // return if this branch contains target node
     })(rootNode);
   }
   

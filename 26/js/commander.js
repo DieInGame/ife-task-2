@@ -5,16 +5,11 @@ var Commander = function() {
   
   function create() {
     var __mediator = null;
-    var __spaceshipModel = null;
     var __AvailableId = [];
     var __spaceshipList = [];
     
     function addAvailableId(Id) {
       __AvailableId.concat(Id);
-    }
-    
-    function setSpaceshipModel(model) {
-      __spaceshipModel = model;
     }
     
     function setMediator(mediator) {

@@ -4,7 +4,7 @@ var Commander = function() {
   var commanderInstance;
   
   function create() {
-    var __mediator = null;
+    var __sceneManager = null;
     var __AvailableId = [];
     var __spaceshipList = [];
     
@@ -12,24 +12,24 @@ var Commander = function() {
       __AvailableId.concat(Id);
     }
     
-    function setMediator(mediator) {
-      __mediator = mediator;
+    function setScene(scene) {
+      __sceneManager = scene;
     }
     
     function createSpaceship() {
       var id = __AvailableId.shift();
-      // TODO: create spaceship
+      __sceneManager.createSpaceship(id);
     }
     
     function sendMessage(id, command) {
-      if(!__mediator) {
-        throw new Error("Commander Error: mediator was never assigned");
+      if(!__sceneManager) {
+        throw new Error("Commander Error: sceneManager was never assigned");
       }
       var message = {
         id: id,
         command: command
       };
-      // TODO: send message to mediator
+      __sceneManager.broadcastMessage(message);
     }
     
     return {

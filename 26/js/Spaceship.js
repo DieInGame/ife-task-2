@@ -5,6 +5,7 @@ class SpaceShip {
     this.__id = id;
     this.__power = 100;
     this.__state = "STOPING";
+    this.__active = true;
   }
   
   move() {
@@ -31,10 +32,10 @@ class SpaceShip {
   }
   
   destruction() {
-    // TODO: self destruction
+    this.__active = false;
   }
   
-  receiveMessage(message) {
+  messageHandler(message) {
     if(message.id === this.__id) {
       switch(message.command) {
         case 'move':

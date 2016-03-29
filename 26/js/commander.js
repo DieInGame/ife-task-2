@@ -56,6 +56,11 @@ var Commander = function() {
     }
     
     return {
+      addAvailableId: addAvailableId,
+      setScene: setScene,
+      spaceshipMove: spaceshipMove,
+      spaceshipStop: spaceshipStop,
+      spaceshipDestruction: spaceshipDestruction,
       createSpaceship: createSpaceship,
       sendMessage: sendMessage
     };
@@ -66,4 +71,4 @@ var Commander = function() {
       return commanderInstance || (commanderInstance = create());
     }
   };
-};
+}();

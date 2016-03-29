@@ -19,7 +19,9 @@ class SceneManager {
     if(!this.renderer) {
       throw new Error("It seems like you forget to set renderer in scene");
     }
-    this.__intervalId = window.setInterval(this.update, 100);
+    this.__intervalId = window.setInterval(() => {
+      this.update();
+    }, 100);
   }
   
   update() {

@@ -24,6 +24,18 @@ class SpaceShip {
     }
   }
   
+  get id() {
+    return this.__id;
+  }
+  
+  get power() {
+    return this.__power;
+  }
+  
+  get radius() {
+    return this.__radius;
+  }
+  
   get active() {
     return this.__active;
   }

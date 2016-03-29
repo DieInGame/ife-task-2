@@ -5,11 +5,11 @@ var Commander = function() {
   
   function create() {
     var __sceneManager = null;
-    var __AvailableId = [];
+    var __availableId = [];
     var __spaceshipList = [];
     
     function addAvailableId(Id) {
-      __AvailableId.concat(Id);
+      __availableId.concat(Id);
     }
     
     function setScene(scene) {
@@ -17,8 +17,31 @@ var Commander = function() {
     }
     
     function createSpaceship() {
-      var id = __AvailableId.shift();
+      var id = __availableId.shift();
       __sceneManager.createSpaceship(id);
+    }
+    
+    function spaceshipMove(id) {
+      sendMessage({
+        id: id,
+        command: "move"
+      });
+    }
+    
+    function spaceshipStop(id) {
+      sendMessage({
+        id: id,
+        command: "stop"
+      });
+    }
+    
+    function spaceshipDestruction(id) {
+      sendMessage({
+        id: id,
+        command: "destruction"
+      });
+      
+      __availableId.push(id);
     }
     
     function sendMessage(id, command) {

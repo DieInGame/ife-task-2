@@ -2,9 +2,21 @@
 
 class SceneManager {
   constructor() {
+    this.__messageQueue = [];
     this.__spaceships = [];
     this.__commander = null;
     this.__spaceshipModle = null;
+  }
+  
+  update() {
+    for(let i = 0, len = this.spaceships.length; i < len; i++) {
+      let spaceship = this.spaceships[i];
+      if(spaceship.active) {
+        spaceship.update && spaceship.update();
+      } else {
+        this.spaceships.splice(i, 1); // remove unactive ship from scene
+      }
+    }
   }
   
   get spaceships() {
@@ -36,7 +48,7 @@ class SceneManager {
   broadcastMessage(message) {
     for(let i = 0, len = this.spaceships.length; i < len; i++) {
       let spaceship = this.spaceships[i];
-      spaceship.messageHandler && spaceship.messageHandler(message);
+      spaceship.active && spaceship.messageHandler && spaceship.messageHandler(message);
     }
   }
 }

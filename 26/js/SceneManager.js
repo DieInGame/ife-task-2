@@ -31,7 +31,7 @@ class SceneManager {
     for(let i = 0, len = this.spaceships.length; i < len; i++) {
       let spaceship = this.spaceships[i];
       spaceship.update && spaceship.update();
-      this.renderer.renderSpaceship(spaceship.power, spaceship.radius, spaceship.rotationAngle, "#FFFFFF");
+      this.renderer.renderSpaceship(spaceship.power, spaceship.radius, spaceship.rotationAngle, spaceship.color);
     }
   }
   
@@ -66,7 +66,14 @@ class SceneManager {
   
   createSpaceship(id) {
     var radius = Math.floor(Math.random() * (200 - 70)) + 70; // random radius between 70 and 200
-    var newSpaceship = new this.spaceshipModel(id, 5, radius);
+    var randomColor = function() { // random generate a color for new ship
+      var color = "#";
+      for(let i = 0; i < 3; i++) {
+        color += (Math.floor(Math.random() * (200 - 100)) + 100).toString(16); // random color should not be too dark or too light
+      }
+      return color;
+    }();
+    var newSpaceship = new this.spaceshipModel(id, 5, radius, randomColor);
     this.__spaceships.push(newSpaceship);
   }
   
@@ -76,7 +83,7 @@ class SceneManager {
       for(let i = 0, len = this.spaceships.length; i < len; i++) {
         let spaceship = this.spaceships[i];
         let successRate = 0.7;
-        Math.random() < 0.7 && spaceship.active && spaceship.messageHandler && spaceship.messageHandler(message);
+        Math.random() < successRate && spaceship.active && spaceship.messageHandler && spaceship.messageHandler(message);
       }
     }, delay);
   }

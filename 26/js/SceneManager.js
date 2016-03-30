@@ -71,9 +71,13 @@ class SceneManager {
   }
   
   broadcastMessage(message) {
-    for(let i = 0, len = this.spaceships.length; i < len; i++) {
-      let spaceship = this.spaceships[i];
-      spaceship.active && spaceship.messageHandler && spaceship.messageHandler(message);
-    }
+    var delay = 1000; // delay 1 second
+    window.setTimeout(() => {
+      for(let i = 0, len = this.spaceships.length; i < len; i++) {
+        let spaceship = this.spaceships[i];
+        let successRate = 0.7;
+        Math.random() < 0.7 && spaceship.active && spaceship.messageHandler && spaceship.messageHandler(message);
+      }
+    }, delay);
   }
 }

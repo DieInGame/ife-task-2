@@ -27,14 +27,11 @@ class SceneManager {
   update() {
     this.renderer.renderBackground();
     this.renderer.renderEarth();
+    this.__spaceships = this.__spaceships.filter((ship) => ship.active); // remove all unactive ship
     for(let i = 0, len = this.spaceships.length; i < len; i++) {
       let spaceship = this.spaceships[i];
-      if(spaceship.active) {
-        spaceship.update && spaceship.update();
-        this.renderer.renderSpaceship(spaceship.power, spaceship.radius, spaceship.rotationAngle, "#FFFFFF");
-      } else {
-        this.spaceships.splice(i, 1); // remove unactive ship from scene
-      }
+      spaceship.update && spaceship.update();
+      this.renderer.renderSpaceship(spaceship.power, spaceship.radius, spaceship.rotationAngle, "#FFFFFF");
     }
   }
   

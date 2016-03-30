@@ -8,8 +8,12 @@ var Commander = function() {
     var __availableId = [];
     var __spaceshipList = [];
     
+    function canCreateSpaceship() {
+      return __availableId.length > 0;
+    }
+    
     function addAvailableId(Id) {
-      __availableId.concat(Id);
+      __availableId = __availableId.concat(Id);
     }
     
     function setScene(scene) {
@@ -17,8 +21,10 @@ var Commander = function() {
     }
     
     function createSpaceship() {
+      if(!__availableId.length) return false;
       var id = __availableId.shift();
       __sceneManager.createSpaceship(id);
+      return id;
     }
     
     function spaceshipMove(id) {
@@ -62,7 +68,8 @@ var Commander = function() {
       spaceshipStop: spaceshipStop,
       spaceshipDestruction: spaceshipDestruction,
       createSpaceship: createSpaceship,
-      sendMessage: sendMessage
+      sendMessage: sendMessage,
+      canCreateSpaceship: canCreateSpaceship
     };
   }
   

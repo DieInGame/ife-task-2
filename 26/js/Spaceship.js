@@ -1,14 +1,14 @@
 "use script";
 
 class SpaceShip {
-  constructor(id, speed, radius, color="#FFFFFF") {
+  constructor(id, speed, radius, angle=0, color="#FFFFFF") {
     this.__id = id;
     this.__power = 100;
     this.__state = "STOPING";
     this.__active = true;
     this.__radius = radius;
     this.__angularVelocity = speed / this.__radius; // Convert linear velocity to angular velocity
-    this.__rotationAngle = 0;
+    this.__rotationAngle = angle;
     this.__consumption = 3;
     this.__powerGrowth = 1;
     this.__color = color;

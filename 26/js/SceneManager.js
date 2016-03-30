@@ -65,7 +65,7 @@ class SceneManager {
   }
   
   createSpaceship(id) {
-    var radius = Math.floor(Math.random() * (200 - 70)) + 70; // random radius between 70 and 200
+    var randomRadius = Math.floor(Math.random() * (200 - 70)) + 70; // random radius between 70 and 200
     var randomColor = function() { // random generate a color for new ship
       var color = "#";
       for(let i = 0; i < 3; i++) {
@@ -73,7 +73,8 @@ class SceneManager {
       }
       return color;
     }();
-    var newSpaceship = new this.spaceshipModel(id, 5, radius, randomColor);
+    var randomAngle = Math.random() * Math.PI * 2; // random start angle
+    var newSpaceship = new this.spaceshipModel(id, 5, randomRadius, randomAngle, randomColor);
     this.__spaceships.push(newSpaceship);
     return newSpaceship;
   }

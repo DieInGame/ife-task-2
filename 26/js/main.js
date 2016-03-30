@@ -41,6 +41,7 @@ function createSpaceshipElement(id) {
     } else if(e.target.className == "destruct") {
       Commander.getInstance().spaceshipDestruction(id);
       spaceship.remove();
+      newSpaceshipButton.disabled = false; // enable new spaceship button
     }
   });
   

@@ -1,7 +1,7 @@
 "use script";
 
 class SpaceShip {
-  constructor(id, speed, radius) {
+  constructor(id, speed, radius, color = "#FFFFFF") {
     this.__id = id;
     this.__power = 100;
     this.__state = "STOPING";
@@ -11,6 +11,7 @@ class SpaceShip {
     this.__rotationAngle = 0;
     this.__consumption = 3;
     this.__powerGrowth = 1;
+    this.__color = color;
   }
   
   update() {

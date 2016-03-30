@@ -68,7 +68,8 @@ class SceneManager {
   }
   
   createSpaceship(id) {
-    var newSpaceship = new this.spaceshipModel(id);
+    var radius = Math.floor(Math.random() * (200 - 70)) + 70; // random radius between 70 and 200
+    var newSpaceship = new this.spaceshipModel(id, 5, radius);
     this.__spaceships.push(newSpaceship);
   }
   

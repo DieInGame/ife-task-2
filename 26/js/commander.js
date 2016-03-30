@@ -50,14 +50,10 @@ var Commander = function() {
       __availableId.push(id);
     }
     
-    function sendMessage(id, command) {
+    function sendMessage(message) {
       if(!__sceneManager) {
         throw new Error("Commander Error: sceneManager was never assigned");
       }
-      var message = {
-        id: id,
-        command: command
-      };
       __sceneManager.broadcastMessage(message);
     }
     

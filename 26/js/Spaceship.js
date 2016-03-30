@@ -15,11 +15,11 @@ class SpaceShip {
   }
   
   update() {
+    this.charge(this.__powerGrowth);
     if(this.__state === "MOVING") {
       this.consumePower(this.__consumption);
       this.__rotationAngle = (this.__rotationAngle + this.__angularVelocity) % (2 * Math.PI);
     }
-    this.charge(this.__powerGrowth);
     if(this.__power <= 0) {
       this.stop();
     }
@@ -67,7 +67,7 @@ class SpaceShip {
   
   consumePower(volumnToConsume) {
     this.__power -= volumnToConsume;
-    if(this.__power) {
+    if(this.__power < 0) {
       this.__power = 0;
     }
   }

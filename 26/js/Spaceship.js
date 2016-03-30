@@ -8,7 +8,7 @@ class SpaceShip {
     this.__active = true;
     this.__radius = radius;
     this.__angularVelocity = speed / this.__radius; // Convert linear velocity to angular velocity
-    this.__rotationAngular = 0;
+    this.__rotationAngle = 0;
     this.__consumption = 3;
     this.__powerGrowth = 1;
   }
@@ -16,7 +16,7 @@ class SpaceShip {
   update() {
     if(this.__state === "MOVING") {
       this.consumePower(this.__consumption);
-      this.__rotationAngle = (this.__rotationAngle + this.__angularVelocity) % Math.PI;
+      this.__rotationAngle = (this.__rotationAngle + this.__angularVelocity) % (2 * Math.PI);
     }
     this.charge(this.__powerGrowth);
     if(this.__power <= 0) {
@@ -75,13 +75,13 @@ class SpaceShip {
     if(message.id === this.__id) {
       switch(message.command) {
         case 'move':
-          move();
+          this.move();
           break;
         case 'stop':
-          stop();
+          this.stop();
           break;
         case 'destruction':
-          destruction();
+          this.destruction();
           break;
       }
     }

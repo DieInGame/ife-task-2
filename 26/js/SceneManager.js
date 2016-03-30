@@ -75,6 +75,7 @@ class SceneManager {
     }();
     var newSpaceship = new this.spaceshipModel(id, 5, radius, randomColor);
     this.__spaceships.push(newSpaceship);
+    return newSpaceship;
   }
   
   broadcastMessage(message) {

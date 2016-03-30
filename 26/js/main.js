@@ -7,7 +7,10 @@ sceneManager.commander = Commander.getInstance();
 sceneManager.spaceshipModel = SpaceShip;
 sceneManager.renderer = Renderer(canvas);
 
-function createSpaceshipElement(id) {
+function createSpaceshipElement(shipInfo) {
+  var id = shipInfo.id;
+  var color = shipInfo.color;
+  
   var spaceship = document.createElement('div');
   spaceship.className = "spaceship";
   spaceship.setAttribute("val", id);
@@ -15,6 +18,7 @@ function createSpaceshipElement(id) {
   var spaceshipId = document.createElement('span');
   spaceshipId.className = "spaceshipId";
   spaceshipId.innerHTML = "Spaceship #" + id;
+  spaceship.style.color = color;
   
   var moveButton = document.createElement("button");
   moveButton.className = "move";
@@ -51,9 +55,9 @@ function createSpaceshipElement(id) {
 var newSpaceshipButton = document.getElementsByClassName("new-spaceship")[0];
 newSpaceshipButton.disabled = !Commander.getInstance().canCreateSpaceship();
 newSpaceshipButton.addEventListener('click', function(e) {
-  var id = Commander.getInstance().createSpaceship();
-  var spaceship = createSpaceshipElement(id);
-  document.getElementsByClassName("console-panel-body")[0].appendChild(spaceship);
+  var shipInfo = Commander.getInstance().createSpaceship();
+  var spaceshipElement = createSpaceshipElement(shipInfo);
+  document.getElementsByClassName("console-panel-body")[0].appendChild(spaceshipElement);
   newSpaceshipButton.disabled = !Commander.getInstance().canCreateSpaceship();
 });
 

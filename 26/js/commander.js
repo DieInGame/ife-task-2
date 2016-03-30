@@ -23,8 +23,7 @@ var Commander = function() {
     function createSpaceship() {
       if(!__availableId.length) return false;
       var id = __availableId.shift();
-      __sceneManager.createSpaceship(id);
-      return id;
+      return __sceneManager.createSpaceship(id);
     }
     
     function spaceshipMove(id) {

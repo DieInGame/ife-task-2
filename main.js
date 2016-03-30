@@ -30,10 +30,13 @@ function addAqiData() {
 function renderAqiList() {
     var node_list = data_table.getElementsByTagName("tr");
     
-    // clear former list
-    for(var x=1;x <node_list.length;x++){
-        data_table.removeChild(node_list[x]);
+    console.log(node_list.length);
+    // WRONG
+    for(var i =1;i<node_list.length;i++){
+        console.log("jishu",i);
+        data_table.removeChild(node_list[i]);
     }
+    
     
     // add arry to list node.
     for(var x in aqiData){
@@ -85,12 +88,11 @@ function addBtnHandle() {
 function delBtnHandle() {
   // do sth.
 //   the true thing we need todo,but now we just need to delete the data.
-  
-//   child = this.parentNode.parentNode;
-//   child.parentNode.removeChild(child);
-  child = this.parentNode;
+   child = this.parentNode;
+//    child.parentNode.removeChild(child);
+ 
   console.log(child.id);
-  aqiData = aqiData.slice(child.id,1);
+  aqiData.splice(child.id,1);
   
   renderAqiList();
 }

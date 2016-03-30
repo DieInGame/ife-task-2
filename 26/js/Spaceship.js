@@ -1,4 +1,4 @@
-"use script";
+"use strict";
 
 class SpaceShip {
   constructor(id, speed, radius, angle=0, color="#FFFFFF") {

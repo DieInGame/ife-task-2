@@ -40,6 +40,7 @@ function createSpaceshipElement(id) {
       Commander.getInstance().spaceshipStop(id);
     } else if(e.target.className == "destruct") {
       Commander.getInstance().spaceshipDestruction(id);
+      spaceship.remove();
     }
   });
   

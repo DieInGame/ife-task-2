@@ -1,0 +1,99 @@
+body { margin: 0; padding: 0; position: relative; height: 824px; background: #000;}
+
+* {
+  font-family: monospace;
+}
+
+.header {
+  width: 500px;
+  margin: auto;
+  padding: 0;
+}
+
+.header pre {
+  margin: 0;
+  padding: 0;
+  color: #00FF00;
+}
+
+.map {
+  width: 510px;
+  height: 510px;
+  border-collapse: collapse;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.map tr {
+  margin: 0;
+  padding: 0;
+}
+
+.map tr td {
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  border: 1px solid #4CAF50;
+  background: #102711;
+}
+
+tr:first-child td, tr td:first-child {
+  background: transparent;
+  border: 0;
+}
+
+.map::before {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: #00FF00;
+  border-radius: 0 50% 50% 50%;
+  box-shadow: 0 0 40px 0px #00FF00;
+}
+
+.console {
+  width: 500px;
+  height: 150px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.command-output-area {
+  position: absolute;
+  width: 100%;
+  bottom: 28px;
+}
+
+.command-input-area {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.command-input-area::before {
+  content: "$";
+  color: #00FF00;
+  font-size: 18px;
+  width: 10px;
+  position: absolute;
+}
+
+.command-input-area input.command-input {
+  width: 100%;
+  border: 0;
+  padding: 0 0 0 15px;
+  font-size: 18px;
+  background: 0;
+  color: #00FF00;
+  text-transform: uppercase;
+  outline: 0;
+}

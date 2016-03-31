@@ -11,11 +11,12 @@
     cellSize: {
       x: 30,
       y: 30
-    },
-    size: {
-      x: row * map.cellSize.x,
-      y: col * map.cellSize.y
     }
+  };
+  
+  map.size = {
+    x: map.row * map.cellSize.x,
+    y: map.col * map.cellSize.y
   };
   
   var AlphaBit = {

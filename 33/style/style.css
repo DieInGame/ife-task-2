@@ -50,14 +50,17 @@ tr:first-child td, tr td:first-child {
   text-align: center;
 }
 
-.map::before {
-  content: "";
+#alphabit {
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  margin-top: -12px;
   background: #00FF00;
   border-radius: 0 50% 50% 50%;
   box-shadow: 0 0 40px 0px #00FF00;
+  left: 0;
+  top: 0;
 }
 
 .console {

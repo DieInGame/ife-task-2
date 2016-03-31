@@ -45,6 +45,9 @@ body { margin: 0; padding: 0; position: relative; height: 824px; background: #00
 tr:first-child td, tr td:first-child {
   background: transparent;
   border: 0;
+  color: #4CAF50;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .map::before {

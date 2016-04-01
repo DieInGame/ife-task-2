@@ -50,7 +50,9 @@
         AlphaBit.instance.style.left = nextPosition.x + "px";
         AlphaBit.instance.style.top = nextPosition.y + "px";
         AlphaBit.currentPosition = nextPosition;
+        return true;
       }
+      return false;
     },
     turnLeft() {
       AlphaBit.currentOrientation = (AlphaBit.currentOrientation + 3) % 4;
@@ -89,7 +91,7 @@
   var CommandList = [
     {
       test: (command) => command.toUpperCase() === "GO",
-      action: () => { AlphaBit.go(); Output.log("go forward one step"); }
+      action: () => { AlphaBit.go() ? Output.log("go forward one step") : Output.error("AlphaBit hits the wall and cry like a baby :("); }
     },
     {
       test: (command) => command.toUpperCase() === "TUN LEF",
@@ -125,7 +127,7 @@
       }
     }
     if(!meetCommand) {
-      Output.error("no such a command");
+      Output.error('AlphaBit just don\'t know what "' + command.toUpperCase() + '" means :-/');
     }
   }
   

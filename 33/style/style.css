@@ -100,6 +100,18 @@ tr:first-child td, tr td:first-child {
   margin: auto;
 }
 
+.shadow {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 50%;
+  background: linear-gradient(#000, transparent);
+  background: -webkit-linear-gradient(#000, transparent);
+  background: -moz-linear-gradient(#000, transparent);
+  background: -o-linear-gradient(#000, transparent);
+  z-index: 1;
+}
+
 .command-output-area {
   position: absolute;
   width: 100%;

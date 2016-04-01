@@ -65,22 +65,43 @@
     }
   };
   
+  var Output = {
+    log(message) {
+      var logElement = document.createElement("p");
+      logElement.className = "output-log";
+      logElement.innerHTML = "> " + message;
+      
+      var outputArea = document.getElementsByClassName("command-output-area")[0];
+      if(outputArea.childElementCount > 5) outputArea.removeChild(outputArea.firstElementChild);
+      outputArea.appendChild(logElement);
+    },
+    error(message) {
+      var errorElement = document.createElement("p");
+      errorElement.className = "output-error";
+      errorElement.innerHTML = "[ERROR] " + message;
+      
+      var outputArea = document.getElementsByClassName("command-output-area")[0];
+      if(outputArea.childElementCount > 5) outputArea.removeChild(outputArea.firstElementChild);
+      outputArea.appendChild(errorElement);
+    }
+  };
+  
   var CommandList = [
     {
       test: (command) => command.toUpperCase() === "GO",
-      action: () => AlphaBit.go()
+      action: () => { AlphaBit.go(); Output.log("go forward one step"); }
     },
     {
       test: (command) => command.toUpperCase() === "TUN LEF",
-      action: () => AlphaBit.turnLeft()
+      action: () => { AlphaBit.turnLeft(); Output.log("turn left"); }
     },
     {
       test: (command) => command.toUpperCase() === "TUN RIG",
-      action: () => AlphaBit.turnRight()
+      action: () => { AlphaBit.turnRight(); Output.log("turn right"); }
     },
     {
       test: (command) => command.toUpperCase() === "TUN BAC",
-      action: () => AlphaBit.turnBack()
+      action: () => { AlphaBit.turnBack(); Output.log("turn back"); }
     }
   ];
   
@@ -92,14 +113,19 @@
   
   function submitCommand(rawString) {
     if(rawString.length > 32) {
-      // TODO: error command too long
+      Output.error("command tooooooooooooooo long");
     }
     rawString = rawString.replace(/</g, "$lt;").replace(/>/g, "$gt;"); // avoid script injection attack
     var command = rawString.split(/\s+/).join(" "); // remove duplicate space
+    var meetCommand = false;
     for(let i = 0, len = CommandList.length; i < len; i++) {
       if(CommandList[i].test(command)) {
         CommandList[i].action();
+        meetCommand = true;
       }
+    }
+    if(!meetCommand) {
+      Output.error("no such a command");
     }
   }
   

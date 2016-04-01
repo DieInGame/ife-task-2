@@ -93,6 +93,17 @@ tr:first-child td, tr td:first-child {
   position: absolute;
   width: 100%;
   bottom: 28px;
+  font-size: 14px;
+}
+
+.command-output-area .output-log {
+  color: #008800;
+  margin: 3px 0;
+}
+
+.command-output-area .output-error {
+  color: #880000;
+  margin: 3px 0;
 }
 
 .command-input-area {

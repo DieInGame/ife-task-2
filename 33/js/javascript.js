@@ -116,6 +116,7 @@
   function submitCommand(rawString) {
     if(rawString.length > 32) {
       Output.error("command tooooooooooooooo long");
+      return;
     }
     rawString = rawString.replace(/</g, "$lt;").replace(/>/g, "$gt;"); // avoid script injection attack
     var command = rawString.split(/\s+/).join(" "); // remove duplicate space

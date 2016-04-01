@@ -148,6 +148,7 @@ tr:first-child td, tr td:first-child {
 }
 
 .command-input-area input.command-input {
+  box-sizing: border-box;
   width: 100%;
   border: 0;
   padding: 0 0 0 15px;

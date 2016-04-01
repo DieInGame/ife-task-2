@@ -101,6 +101,7 @@ tr:first-child td, tr td:first-child {
   left: 0;
   right: 0;
   margin: auto;
+  overflow: hidden;
 }
 
 .shadow {

@@ -63,6 +63,22 @@ tr:first-child td, tr td:first-child {
   top: 0;
 }
 
+#alphabit.facing-north {
+  transform: rotate(45deg);
+}
+
+#alphabit.facing-east {
+  transform: rotate(135deg);
+}
+
+#alphabit.facing-south {
+  transform: rotate(225deg);
+}
+
+#alphabit.facing-west {
+  transform: rotate(315deg);
+}
+
 .console {
   width: 500px;
   height: 150px;

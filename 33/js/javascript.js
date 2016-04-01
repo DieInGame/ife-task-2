@@ -5,8 +5,8 @@
     row: 16,
     col: 16,
     origin: {
-      x: 15,
-      y: 15
+      x: 45,
+      y: 45
     },
     cellSize: {
       x: 30,
@@ -15,8 +15,8 @@
   };
   
   map.size = {
-    x: map.row * map.cellSize.x,
-    y: map.col * map.cellSize.y
+    x: map.origin.x + map.row * map.cellSize.x,
+    y: map.origin.y + map.col * map.cellSize.y
   };
   
   var AlphaBit = {
@@ -31,6 +31,7 @@
       { x:  0, y:  1 }, // South
       { x: -1, y:  0 }  // West
     ],
+    orientationClass: ['facing-north', 'facing-east', 'facing-south', 'facing-west'],
     currentOrientation: 0,
     setPosition(x, y) {
       AlphaBit.instance.style.left = x + "px";
@@ -42,39 +43,43 @@
     },
     go() {
       let nextPosition = {
-        x: AlphaBit.currentPosition.x + AlphaBit.stepForword[AlphaBit.currentOrientation] * map.cellSize.x,
-        y: AlphaBit.currentPosition.x + AlphaBit.stepForword[AlphaBit.currentOrientation] * map.cellSize.y
+        x: AlphaBit.currentPosition.x + AlphaBit.stepForword[AlphaBit.currentOrientation].x * map.cellSize.x,
+        y: AlphaBit.currentPosition.y + AlphaBit.stepForword[AlphaBit.currentOrientation].y * map.cellSize.y
       };
       if(nextPosition.x < map.size.x && nextPosition.x >= map.origin.x && nextPosition.y < map.size.y && nextPosition.y >= map.origin.y) { // if next position within this map
+        AlphaBit.instance.style.left = nextPosition.x + "px";
+        AlphaBit.instance.style.top = nextPosition.y + "px";
         AlphaBit.currentPosition = nextPosition;
       }
     },
     turnLeft() {
       AlphaBit.currentOrientation = (AlphaBit.currentOrientation + 3) % 4;
+      AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
     },
     turnRight() {
       AlphaBit.currentOrientation = (AlphaBit.currentOrientation + 1) % 4;
+      AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
     },
     turnBack() {
-      AlphaBit.currentOrientation = (AlphaBit.currentOrientation + 2) % 4;
+      AlphaBit.currentOrientation = (AlphaBit.currentOrientation + 2) % 4;      AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
     }
   };
   
   var CommandList = [
     {
-      test: (command) => command.toUppercase === "GO",
+      test: (command) => command.toUpperCase() === "GO",
       action: () => AlphaBit.go()
     },
     {
-      test: (command) => command.toUppercase === "TUN LEF",
+      test: (command) => command.toUpperCase() === "TUN LEF",
       action: () => AlphaBit.turnLeft()
     },
     {
-      test: (command) => command.toUppercase === "TUN RIG",
+      test: (command) => command.toUpperCase() === "TUN RIG",
       action: () => AlphaBit.turnRight()
     },
     {
-      test: (command) => command.toUppercase === "TUN BAC",
+      test: (command) => command.toUpperCase() === "TUN BAC",
       action: () => AlphaBit.turnBack()
     }
   ];
@@ -105,4 +110,8 @@
       this.value = ""; // clear input field
     }
   };
+  
+  AlphaBit.setPosition(map.origin.x, map.origin.y);
+  AlphaBit.currentOrientation = 1;
+  AlphaBit.instance.className = "facing-east";
 })();

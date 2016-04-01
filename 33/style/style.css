@@ -72,6 +72,9 @@ tr:first-child td, tr td:first-child {
   left: 0;
   top: 0;
   animation: twinkle 2s linear infinite;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
 }
 
 #alphabit.facing-north {

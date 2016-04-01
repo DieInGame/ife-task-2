@@ -142,4 +142,6 @@
   AlphaBit.setPosition(map.origin.x, map.origin.y);
   AlphaBit.currentOrientation = 1;
   AlphaBit.instance.className = "facing-east";
+  
+  document.getElementsByClassName("command-input")[0].focus();
 })();

@@ -45,7 +45,7 @@
         x: AlphaBit.currentPosition.x + AlphaBit.stepForword[AlphaBit.currentOrientation] * map.cellSize.x,
         y: AlphaBit.currentPosition.x + AlphaBit.stepForword[AlphaBit.currentOrientation] * map.cellSize.y
       };
-      if(nextPosition.x < map.size.x && nextPosition.y < map.size.y) {
+      if(nextPosition.x < map.size.x && nextPosition.x >= map.origin.x && nextPosition.y < map.size.y && nextPosition.y >= map.origin.y) { // if next position within this map
         AlphaBit.currentPosition = nextPosition;
       }
     },

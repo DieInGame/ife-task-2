@@ -4,6 +4,16 @@ body { margin: 0; padding: 0; position: relative; height: 824px; background: #00
   font-family: monospace;
 }
 
+@keyframes twinkle {
+  0% { box-shadow: 0 0 40px 0px #00FF00; }
+  35% { box-shadow:  0 0 40px 3px #00FF00; }
+  40% { box-shadow: 0 0 40px 10px #00FF00; }
+  50% { box-shadow: 0 0 40px 2px #00FF00; }
+  70% { box-shadow:  0 0 40px 7px #00FF00; }
+  80% { box-shadow:  0 0 40px 5px #00FF00;}
+  100% { box-shadow: 0 0 40px 0px #00FF00; }
+}
+
 .header {
   width: 500px;
   margin: auto;
@@ -61,6 +71,7 @@ tr:first-child td, tr td:first-child {
   box-shadow: 0 0 40px 0px #00FF00;
   left: 0;
   top: 0;
+  animation: twinkle 2s linear infinite;
 }
 
 #alphabit.facing-north {

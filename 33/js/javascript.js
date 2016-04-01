@@ -60,9 +60,49 @@
     }
   };
   
+  var CommandList = [
+    {
+      test: (command) => command.toUppercase === "GO",
+      action: () => AlphaBit.go()
+    },
+    {
+      test: (command) => command.toUppercase === "TUN LEF",
+      action: () => AlphaBit.turnLeft()
+    },
+    {
+      test: (command) => command.toUppercase === "TUN RIG",
+      action: () => AlphaBit.turnRight()
+    },
+    {
+      test: (command) => command.toUppercase === "TUN BAC",
+      action: () => AlphaBit.turnBack()
+    }
+  ];
+  
   var rowCells = document.querySelectorAll("tr:first-child td");
   var colCells = document.querySelectorAll("tr td:first-child");
   for(let i = 1, len = rowCells.length; i < len; i++) {
     colCells[i].innerHTML = rowCells[i].innerHTML = (i-1).toString(16);
   }
+  
+  function submitCommand(rawString) {
+    if(rawString.length > 32) {
+      // TODO: error command too long
+    }
+    rawString = rawString.replace(/</g, "$lt;").replace(/>/g, "$gt;"); // avoid script injection attack
+    var command = rawString.split(/\s+/).join(" "); // remove duplicate space
+    for(let i = 0, len = CommandList.length; i < len; i++) {
+      if(CommandList[i].test(command)) {
+        CommandList[i].action();
+      }
+    }
+  }
+  
+  document.getElementsByClassName("command-input")[0].onkeypress = function(e) {
+    var keycode = e.keycode || e.which;
+    if(keycode === 13) { // if Enter key pressed
+      submitCommand(this.value);
+      this.value = ""; // clear input field
+    }
+  };
 })();

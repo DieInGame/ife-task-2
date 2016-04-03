@@ -75,16 +75,28 @@
     turnBack() {
       AlphaBit.currentOrientation = (AlphaBit.currentOrientation + 2) % 4;      AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
     },
-    transformLeft() {
+    transform(step) {
       let nextPosition = {
-        x: AlphaBit.currentPosition.x + AlphaBit.stepForword[3].x * map.cellSize.x,
-        y: AlphaBit.currentPosition.y + AlphaBit.stepForword[3].y * map.cellSize.y
+        x: AlphaBit.currentPosition.x + step.x * map.cellSize.x,
+        y: AlphaBit.currentPosition.y + step.y * map.cellSize.y
       };
       if(map.isInMap(nextPosition)) {
         AlphaBit.setPosition(nextPosition);
         return true;
       }
       return false;
+    },
+    transformLeft() {
+      return AlphaBit.transform({
+        x: -1,
+        y: 0
+      });
+    },
+    transformTop() {
+      return AlphaBit.transform({
+        x: 0,
+        y: -1
+      });
     }
   };
   
@@ -129,6 +141,10 @@
     {
       test: (command) => command.toUpperCase() === "TRA LEF",
       action: () => { AlphaBit.transformLeft() ? Output.log("transform to left") : Output.error("WTF??? Left??? Are you blind?"); }
+    },
+    {
+      test: (command) => command.toUpperCase() === "TRA TOP",
+      action: () => { AlphaBit.transformTop() ? Output.log("transform to top") : Output.error("WTF??? Top??? Are you blind?"); }
     }
   ];
   

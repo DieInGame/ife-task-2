@@ -19,6 +19,10 @@
     y: map.origin.y + map.col * map.cellSize.y
   };
   
+  map.isInMap = function(pos) {
+    return (pos.x < map.size.x && pos.x >= map.origin.x && pos.y < map.size.y && pos.y >= map.origin.y);
+  };
+  
   var AlphaBit = {
     instance: document.getElementById("alphabit"),
     currentPosition: {
@@ -34,6 +38,14 @@
     orientationClass: ['facing-north', 'facing-east', 'facing-south', 'facing-west'],
     currentOrientation: 0,
     setPosition(x, y) {
+      if(!y) {
+        let pos = x;
+        if(pos.x && pos.y) {
+          x = pos.x;
+          y = pos.y;
+        }
+      }
+      
       AlphaBit.instance.style.left = x + "px";
       AlphaBit.instance.style.top = y + "px";
       AlphaBit.currentPosition = {
@@ -46,10 +58,8 @@
         x: AlphaBit.currentPosition.x + AlphaBit.stepForword[AlphaBit.currentOrientation].x * map.cellSize.x,
         y: AlphaBit.currentPosition.y + AlphaBit.stepForword[AlphaBit.currentOrientation].y * map.cellSize.y
       };
-      if(nextPosition.x < map.size.x && nextPosition.x >= map.origin.x && nextPosition.y < map.size.y && nextPosition.y >= map.origin.y) { // if next position within this map
-        AlphaBit.instance.style.left = nextPosition.x + "px";
-        AlphaBit.instance.style.top = nextPosition.y + "px";
-        AlphaBit.currentPosition = nextPosition;
+      if(map.isInMap(nextPosition)) { // if next position within this map
+        AlphaBit.setPosition(nextPosition);
         return true;
       }
       return false;
@@ -64,6 +74,17 @@
     },
     turnBack() {
       AlphaBit.currentOrientation = (AlphaBit.currentOrientation + 2) % 4;      AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
+    },
+    transformLeft() {
+      let nextPosition = {
+        x: AlphaBit.currentPosition.x + AlphaBit.stepForword[3].x * map.cellSize.x,
+        y: AlphaBit.currentPosition.y + AlphaBit.stepForword[3].y * map.cellSize.y
+      };
+      if(map.isInMap(nextPosition)) {
+        AlphaBit.setPosition(nextPosition);
+        return true;
+      }
+      return false;
     }
   };
   
@@ -104,6 +125,10 @@
     {
       test: (command) => command.toUpperCase() === "TUN BAC",
       action: () => { AlphaBit.turnBack(); Output.log("turn back"); }
+    },
+    {
+      test: (command) => command.toUpperCase() === "TRA LEF",
+      action: () => { AlphaBit.transformLeft() ? Output.log("transform to left") : Output.error("WTF??? Left??? Are you blind?"); }
     }
   ];
   

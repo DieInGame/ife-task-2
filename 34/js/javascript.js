@@ -97,6 +97,12 @@
         x: 0,
         y: -1
       });
+    },
+    transformRight() {
+      return AlphaBit.transform({
+        x: 1,
+        y: 0
+      });
     }
   };
   
@@ -145,6 +151,10 @@
     {
       test: (command) => command.toUpperCase() === "TRA TOP",
       action: () => { AlphaBit.transformTop() ? Output.log("transform to top") : Output.error("WTF??? Top??? Are you blind?"); }
+    },
+    {
+      test: (command) => command.toUpperCase() === "TRA RIG",
+      action: () => { AlphaBit.transformRight() ? Output.log("transform to right") : Output.error("WTF??? Right??? Are you blind?"); }
     }
   ];
   

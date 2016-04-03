@@ -109,6 +109,26 @@
         x: 0,
         y: 1
       });
+    },
+    faceToLeft() {
+      AlphaBit.currentOrientation = 3;
+      AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
+    },
+    faceToTop() {
+      AlphaBit.currentOrientation = 0;
+      AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
+    },
+    faceToRight() {
+      AlphaBit.currentOrientation = 1;
+      AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
+    },
+    faceToBottom() {
+      AlphaBit.currentOrientation = 2;
+      AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
+    },
+    moveLeft() {
+      AlphaBit.faceToLeft();
+      return AlphaBit.go();
     }
   };
   
@@ -165,6 +185,10 @@
     {
       test: (command) => command.toUpperCase() === "TRA BOT",
       action: () => { AlphaBit.transformBottom() ? Output.log("transform to bottom") : Output.error("WTF??? Bottom??? Are you blind?"); }
+    },
+    {
+      test: (command) => command.toUpperCase() === "MOV LEF",
+      action: () => { AlphaBit.moveLeft() ? Output.log("move to left") : Output.error("I'm facing left now and there is a wall in front of me."); }
     }
   ];
   

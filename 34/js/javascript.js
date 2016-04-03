@@ -129,6 +129,10 @@
     moveLeft() {
       AlphaBit.faceToLeft();
       return AlphaBit.go();
+    },
+    moveTop() {
+      AlphaBit.faceToTop();
+      return AlphaBit.go();
     }
   };
   
@@ -189,6 +193,10 @@
     {
       test: (command) => command.toUpperCase() === "MOV LEF",
       action: () => { AlphaBit.moveLeft() ? Output.log("move to left") : Output.error("I'm facing left now and there is a wall in front of me."); }
+    },
+    {
+      test: (command) => command.toUpperCase() === "MOV TOP",
+      action: () => { AlphaBit.moveTop() ? Output.log("move to top") : Output.error("I'm facing top now and there is a wall in front of me."); }
     }
   ];
   

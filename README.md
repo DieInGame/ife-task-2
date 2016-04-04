@@ -6,7 +6,7 @@
 | 14 | [@Fiooona](https://github.com/Fiooona) | 准备提交 |
 | 15 | [@Fiooona](https://github.com/Fiooona) | 准备提交 |
 | 25 | [@theJian](http://github.com/thejian) |  |
-| 26 | [@theJian](http://github.com/thejian) | 准备提交 |
-| 33 | [@theJian](http://github.com/thejian) | 准备提交 |
-| 34 | [@theJian](http://github.com/thejian) | 准备提交 |
+| 26 | [@theJian](http://github.com/thejian) | 已提交 |
+| 33 | [@theJian](http://github.com/thejian) | 已提交 |
+| 34 | [@theJian](http://github.com/thejian) | 已提交 |
 | 35 | [@theJian](http://github.com/thejian) |  |

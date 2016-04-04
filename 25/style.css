@@ -9,7 +9,6 @@ html, body { margin: 0; border: 0; padding: 0; height: 100% }
 .tree-panel_head {
   height: 36px;
   line-height: 36px;
-  background: #CECECE;
   padding: 0 15px;
 }
 
@@ -20,19 +19,25 @@ html, body { margin: 0; border: 0; padding: 0; height: 100% }
 .tree-panel_head .search-button {
   display: inline-block;
   width: 60px;
-  height: 32px;
+  height: 20px;
   background: #EFEFEF;
   border: 1px solid #999;
   cursor: pointer;
+  vertical-align: middle;
+  line-height: 20px;
+  text-align: center;
 }
 
 .tree-panel_head .add-button {
   display: inline-block;
   width: 60px;
-  height: 32px;
+  height: 20px;
   background: #EFEFEF;
   border: 1px solid #999;
   cursor: pointer;
+  vertical-align: middle;
+  line-height: 20px;
+  text-align: center;
 }
 
 /* node view */

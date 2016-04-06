@@ -35,7 +35,7 @@ function init() {
       render();
   });
   document.getElementById("l-").addEventListener("click",function(){
-      list.shift(parseInt(num.value) );
+      list.shift( );
       render();
   });
   document.getElementById("r+").addEventListener("click",function(){
@@ -43,7 +43,7 @@ function init() {
       render();
   });
   document.getElementById("r-").addEventListener("click",function(){
-       list.pop(parseInt(num.value) );
+       list.pop( );
       render();
   });
   

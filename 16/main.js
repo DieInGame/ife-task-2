@@ -28,7 +28,7 @@ function addAqiData() {
         document.getElementById("tip_value").innerHTML="空气质量只能含数字!";
         return ;
     }
-    // aqiData[data_city] = data_value;
+    // 填充数据
     aqiData.push({key:data_city,value:data_value});
 }
 
@@ -38,12 +38,16 @@ function addAqiData() {
 function renderAqiList() {
     var node_list = data_table.getElementsByTagName("tr");
     
-    console.log(node_list.length);
-    // WRONG
-    for(var i =1;i<node_list.length;i++){
-        console.log("jishu",i);
-        data_table.removeChild(node_list[i]);
+    // 第一步先要删除之前的渲染表格，因为下方是AppendChild。
+    
+    
+    while(node_list.length != 1){
+        data_table.removeChild(node_list[node_list.length-1]);
+        console.log(node_list.length);
     }
+    
+        
+    
     // add arry to list node.
     for(var x in aqiData){
         var node = document.createElement("tr");
@@ -68,6 +72,7 @@ function renderAqiList() {
         
         // data_table.appendChild(title);
     }
+    
     if(btn_delete){
     for(var x in btn_delete){  
         btn_delete[x].addEventListener("click",delBtnHandle);

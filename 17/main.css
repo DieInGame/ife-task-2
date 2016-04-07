@@ -1,0 +1,18 @@
+fieldset{
+    border: solid 1px lightgrey;
+    text-align: center;
+    font-family: fantasy;
+    /*border-radius: 13% 13% 13% 13%;*/
+}
+
+#city-select{
+    -webkit-appearance: none;
+    width: 60px;
+    border: solid 1px darkgray;
+    text-align: center;
+}
+#city-select:hover{
+    box-shadow: 2px 2px 3px black;
+    color: white;
+    background-color:grey;
+}

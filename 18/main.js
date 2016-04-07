@@ -6,7 +6,7 @@
  * splice 链表操作
  */
 var list = new Array();
-list = [10];
+list = [];
 
 var container = document.getElementsByClassName("container");
 var span_list = document.getElementsByTagName("span");
@@ -22,7 +22,11 @@ function render() {
     for(var x in list){
         var node = document.createElement("span");
         node.innerHTML = list[x];
+        node.addEventListener("click",function () {
+            this.parentNode.removeChild(this);
+        })
         container[0].appendChild(node);
+        
     }
 } 
 
@@ -46,6 +50,8 @@ function init() {
        list.pop( );
       render();
   });
+  
+  
   
 }
 

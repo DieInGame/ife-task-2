@@ -138,6 +138,7 @@ function initAqiChartData() {
       chartData[x]["day"] = aqiSourceData[x];
     //   month data
           var Jan=0;var Feb=0; var Mar = 0;
+          var cal=0;
       for(var y in aqiSourceData[x]){
           if(/^2016-01/.test(y)){   
               Jan+=aqiSourceData[x][y];
@@ -146,11 +147,14 @@ function initAqiChartData() {
           }else if(/^2016-03/.test(y)){
               Mar+=aqiSourceData[x][y];
           }
+          //   week data
+          if(chartData[x]["week"][parseInt(cal/7)]==null) chartData[x]["week"][parseInt(cal/7)]=0;
+          chartData[x]["week"][parseInt(cal/7)]+=aqiSourceData[x][y];
+          cal ++;
           
       }
       chartData[x]["month"]={"Jan":Jan,"Feb":Feb,"Mar":Mar};
-    //   week data
-        
+    
   }
 }
 

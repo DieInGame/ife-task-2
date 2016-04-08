@@ -16,3 +16,30 @@ fieldset{
     color: white;
     background-color:grey;
 }
+
+.chart {
+  list-style: none;
+  font-family: '宋体';
+  font-size: 14px;
+  border: 1px solid #ccc;
+  margin: 0;
+  padding: 5px;
+  background:#F2F1D7;
+  float:left;
+}
+.chart li {
+  width:70px;
+  height:140px;
+  float:left;
+  background:#DDF3FF url(http://images.cnblogs.com/cnblogs_com/rubylouvre/202680/o_pillar.gif) center center repeat-y;
+}
+.chart li em,  .chart li span,.chart li strong {
+  display:block;
+  height:20px;
+  text-align:center;
+  background: #DDF3FF;
+}
+.chart li span {
+  height:100px;
+  background:transparent url(http://images.cnblogs.com/cnblogs_com/rubylouvre/202680/o_mask.jpg)  no-repeat;
+}

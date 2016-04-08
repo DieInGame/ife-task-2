@@ -124,12 +124,33 @@ function initCitySelector() {
 
 /**
  * 初始化图表需要的数据格式
+ * 关于数据格式转换，我的想法是这样的，一共有两次索引，城市和时间间隔。
+ * 第一次索引决定显示数据，第二次索引决定数据如何合并，而且需要用title显示具体数据和时间
+ * 所以可以预先生成数据，
+ * ｛“北京”：｛“day”：。。;"week":..;"month":..｝;...｝
  */
 function initAqiChartData() {
   // 将原始的源数据处理成图表需要的数据格式
   // 处理好的数据存到 chartData 中
   for(var x in aqiSourceData){
-      
+      chartData[x] = new Object({"day":{},"week":{},"month":{}});
+    //   day data
+      chartData[x]["day"] = aqiSourceData[x];
+    //   month data
+          var Jan=0;var Feb=0; var Mar = 0;
+      for(var y in aqiSourceData[x]){
+          if(/^2016-01/.test(y)){   
+              Jan+=aqiSourceData[x][y];
+          }else if(/^2016-02/.test(y)){            
+              Feb+=aqiSourceData[x][y];
+          }else if(/^2016-03/.test(y)){
+              Mar+=aqiSourceData[x][y];
+          }
+          
+      }
+      chartData[x]["month"]={"Jan":Jan,"Feb":Feb,"Mar":Mar};
+    //   week data
+        
   }
 }
 

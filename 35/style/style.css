@@ -26,16 +26,20 @@ body { margin: 0; padding: 0; position: relative; height: 824px; background: #00
   color: #00FF00;
 }
 
+.body {
+  width: 1200px;
+  height: 680px;
+  position: relative;
+  margin: auto;
+}
+
 .map {
   width: 510px;
   height: 510px;
   border-collapse: collapse;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 10px;
   top: 0;
-  bottom: 0;
-  margin: auto;
 }
 
 .map tr {
@@ -98,8 +102,7 @@ tr:first-child td, tr td:first-child {
   height: 150px;
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: 20px;
   margin: auto;
   overflow: hidden;
 }
@@ -157,4 +160,94 @@ tr:first-child td, tr td:first-child {
   color: #00FF00;
   text-transform: uppercase;
   outline: 0;
+}
+
+.editor {
+  width: 600px;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  background: #1F1F1F;
+}
+
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 35px;
+  margin: 0;
+  padding: 0;
+  background: #111;
+}
+
+.toolbar ul {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  height: 100%;
+  list-style: none;
+}
+
+.toolbar ul li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-right: 1px solid #333;
+  width: 70px;
+  height: 100%;
+  float: left;
+
+  color: #777;
+  font-size: 24px;
+  text-align: center;
+  line-height: 35px;
+
+  cursor: pointer;
+}
+
+.toolbar ul li:hover {
+  color: #CCC;
+}
+
+.board {
+  position: absolute;
+  top: 50px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  background: #111;
+  overflow: auto;
+}
+
+.editor .board textarea {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  padding-left: 30px;
+  line-height: 20px;
+  font-size: 14px;
+  font-family: monospace;
+  color: #00FF00;
+  background: #111;
+  outline: none;
+  resize: none;
+}
+
+.editor .board .line-nums {
+  padding: 0;
+  border: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: monospace;
+  color: #999;
+  background: #111;
+  position: absolute;
+  left: 0;
+  width: 20px;
+  text-align: right;
 }

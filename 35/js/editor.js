@@ -1,3 +1,5 @@
+'use strict';
+
 var Editor = function(editorInfo) {
   this.textarea = null;
   this.minWidth = 0;
@@ -19,7 +21,13 @@ var Editor = function(editorInfo) {
     throw new Error('no textarea provided');
   }
 
-  this.textarea.addEventListener('input', function() {
-    this.style.height = this.scrollHeight + 'px';
+  this.textarea.addEventListener('input', () => {
+    this.textarea.style.height = this.minHeight; // reset the height of editor
+    var height = this.textarea.scrollHeight;
+    if(height < this.minHeight) {
+      height = this.minHeight;
+    }
+    this.textarea.style.height = height + 'px';
+    console.log(height);
   });
 };

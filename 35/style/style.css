@@ -136,7 +136,7 @@ tr:first-child td, tr td:first-child {
   margin: 3px 0;
 }
 
-.command-input-area {
+/*.command-input-area {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -160,7 +160,7 @@ tr:first-child td, tr td:first-child {
   color: #00FF00;
   text-transform: uppercase;
   outline: 0;
-}
+}*/
 
 .editor {
   width: 600px;
@@ -225,6 +225,9 @@ tr:first-child td, tr td:first-child {
 }
 
 .editor .board textarea {
+  min-height: 620px;
+  min-width: 550px;
+  display: block;
   margin: 0;
   padding: 0;
   border: 0;

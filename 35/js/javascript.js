@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  
+
   var map = {
     row: 16,
     col: 16,
@@ -13,16 +13,16 @@
       y: 30
     }
   };
-  
+
   map.size = {
     x: map.origin.x + map.row * map.cellSize.x,
     y: map.origin.y + map.col * map.cellSize.y
   };
-  
+
   map.isInMap = function(pos) {
     return (pos.x < map.size.x && pos.x >= map.origin.x && pos.y < map.size.y && pos.y >= map.origin.y);
   };
-  
+
   var AlphaBit = {
     instance: document.getElementById("alphabit"),
     currentPosition: {
@@ -45,7 +45,7 @@
           y = pos.y;
         }
       }
-      
+
       AlphaBit.instance.style.left = x + "px";
       AlphaBit.instance.style.top = y + "px";
       AlphaBit.currentPosition = {
@@ -143,13 +143,13 @@
       return AlphaBit.go();
     }
   };
-  
+
   var Output = {
     log(message) {
       var logElement = document.createElement("p");
       logElement.className = "output-log";
       logElement.innerHTML = "> " + message;
-      
+
       var outputArea = document.getElementsByClassName("command-output-area")[0];
       if(outputArea.childElementCount > 5) outputArea.removeChild(outputArea.firstElementChild);
       outputArea.appendChild(logElement);
@@ -158,13 +158,13 @@
       var errorElement = document.createElement("p");
       errorElement.className = "output-error";
       errorElement.innerHTML = "[ERROR] " + message;
-      
+
       var outputArea = document.getElementsByClassName("command-output-area")[0];
       if(outputArea.childElementCount > 5) outputArea.removeChild(outputArea.firstElementChild);
       outputArea.appendChild(errorElement);
     }
   };
-  
+
   var CommandList = [
     {
       test: (command) => command.toUpperCase() === "GO",
@@ -215,13 +215,13 @@
       action: () => { AlphaBit.moveBottom() ? Output.log("move to bottom") : Output.error("I'm facing bottom now and there is a wall in front of me."); }
     }
   ];
-  
+
   var rowCells = document.querySelectorAll("tr:first-child td");
   var colCells = document.querySelectorAll("tr td:first-child");
   for(let i = 1, len = rowCells.length; i < len; i++) {
     colCells[i].innerHTML = rowCells[i].innerHTML = "0" + (i-1).toString(16);
   }
-  
+
   function submitCommand(rawString) {
     if(rawString.length > 32) {
       Output.error("command tooooooooooooooo long");
@@ -240,18 +240,18 @@
       Output.error('AlphaBit just don\'t know what "' + command.toUpperCase() + '" means :-/');
     }
   }
-  
-  document.getElementsByClassName("command-input")[0].onkeypress = function(e) {
-    var keycode = e.keycode || e.which;
-    if(keycode === 13) { // if Enter key pressed
-      submitCommand(this.value);
-      this.value = ""; // clear input field
-    }
-  };
-  
+
+  // document.getElementsByClassName("command-input")[0].onkeypress = function(e) {
+  //   var keycode = e.keycode || e.which;
+  //   if(keycode === 13) { // if Enter key pressed
+  //     submitCommand(this.value);
+  //     this.value = ""; // clear input field
+  //   }
+  // };
+
   AlphaBit.setPosition(map.origin.x, map.origin.y);
   AlphaBit.currentOrientation = 1;
   AlphaBit.instance.className = "facing-east";
-  
-  document.getElementsByClassName("command-input")[0].focus();
+
+  // document.getElementsByClassName(" command-input")[0].focus();
 })();

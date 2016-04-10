@@ -1,5 +1,5 @@
-var editor = function(editorInfo) {
-  this.editor = null;
+var Editor = function(editorInfo) {
+  this.textarea = null;
   this.minWidth = 0;
   this.minHeight = 0;
   this.fontSize = 14;
@@ -9,13 +9,17 @@ var editor = function(editorInfo) {
     throw new Error('No EditorInfo Provided');
   }
 
-  for(var x in editor) {
+  for(var x in editorInfo) {
     if(this.hasOwnProperty(x)) {
-      this[x] = editor[x];
+      this[x] = editorInfo[x];
     }
   }
 
-  if(!this.editor) {
-    throw new Error('no editor provided');
+  if(!this.textarea) {
+    throw new Error('no textarea provided');
   }
+
+  this.textarea.addEventListener('input', function() {
+    this.style.height = this.scrollHeight + 'px';
+  });
 };

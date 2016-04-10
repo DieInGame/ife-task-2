@@ -254,3 +254,7 @@ tr:first-child td, tr td:first-child {
   width: 20px;
   text-align: right;
 }
+
+.editor  .board .line-nums span {
+  display: block;
+}

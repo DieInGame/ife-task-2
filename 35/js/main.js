@@ -11,7 +11,7 @@ var editor = new Editor({
   minHeight: 620
 });
 
-function submitcommand(command, cb) {
+function submitCommand(command, cb) {
   for(let i = 0, len = CommandList.length; i < len; i++) {
     if(CommandList[i].test(command)) {
       CommandList[i].action();
@@ -23,19 +23,24 @@ function submitcommand(command, cb) {
 
 document.querySelector('.toolbar .run').addEventListener('click', function() {
   var lines = editor.getLines();
-  for(let i = 0, len = lines.length; i < len; i++) {
-    let line = lines[i];
+  (function run(lineIndex) {
+    if(lineIndex >= lines.length) {
+      return;
+    }
+    let line = lines[lineIndex];
     line = line.replace(/</g, "$lt;").replace(/>/g, "$gt;"); // avoid script injection attack
     let command = line.split(/\s+/).join(" "); // remove duplicate space
     if(command) {
-      console.log(command);
-      submitcommand(command, function(err) {
+      submitCommand(command, function(err) {
         if(err) {
-          editor.lineNumbers.children[i].classList.add('warning');
+          editor.lineNumbers.children[lineIndex].classList.add('warning');
         } else {
-          editor.lineNumbers.children[i].classList.remove('warning');
+          editor.lineNumbers.children[lineIndex].classList.remove('warning');
         }
-      });
+      })
     }
-  }
+    window.setTimeout(function() {
+      run(lineIndex + 1);
+    }, 750);
+  })(0);
 });

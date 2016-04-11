@@ -28,12 +28,13 @@ var Editor = function(editorInfo) {
   }
 
   this.textarea.addEventListener('input', () => {
-    this.textarea.style.height = this.minHeight; // reset the height of editor
+    this.textarea.style.height = this.minHeight + 'px'; // reset the height of editor
     var height = this.textarea.scrollHeight;
     if(height < this.minHeight) {
       height = this.minHeight;
     }
     this.textarea.style.height = height + 'px';
+    console.log(height);
     this.lines = this.textarea.value.split(/\r*\n/);
     while(this.lineCount != this.lines.length) {
       if(this.lineCount < this.lines.length) {

@@ -239,6 +239,7 @@ tr:first-child td, tr td:first-child {
   background: #111;
   outline: none;
   resize: none;
+  text-transform: uppercase;
 }
 
 .editor .board .line-nums {

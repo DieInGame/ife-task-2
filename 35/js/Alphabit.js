@@ -32,92 +32,92 @@ var Alphabit = {
   },
   go() {
     let nextPosition = {
-      x: AlphaBit.currentPosition.x + AlphaBit.stepForword[AlphaBit.currentOrientation].x * map.cellSize.x,
-      y: AlphaBit.currentPosition.y + AlphaBit.stepForword[AlphaBit.currentOrientation].y * map.cellSize.y
+      x: Alphabit.currentPosition.x + Alphabit.stepForword[Alphabit.currentOrientation].x * map.cellSize.x,
+      y: Alphabit.currentPosition.y + Alphabit.stepForword[Alphabit.currentOrientation].y * map.cellSize.y
     };
     if(map.isInMap(nextPosition)) { // if next position within this map
-      AlphaBit.setPosition(nextPosition);
+      Alphabit.setPosition(nextPosition);
       return true;
     }
     return false;
   },
   turnLeft() {
-    AlphaBit.currentOrientation = (AlphaBit.currentOrientation + 3) % 4;
-    AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
+    Alphabit.currentOrientation = (Alphabit.currentOrientation + 3) % 4;
+    Alphabit.instance.className = Alphabit.orientationClass[Alphabit.currentOrientation];
   },
   turnRight() {
-    AlphaBit.currentOrientation = (AlphaBit.currentOrientation + 1) % 4;
-    AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
+    Alphabit.currentOrientation = (Alphabit.currentOrientation + 1) % 4;
+    Alphabit.instance.className = Alphabit.orientationClass[Alphabit.currentOrientation];
   },
   turnBack() {
-    AlphaBit.currentOrientation = (AlphaBit.currentOrientation + 2) % 4;      AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
+    Alphabit.currentOrientation = (Alphabit.currentOrientation + 2) % 4;      Alphabit.instance.className = Alphabit.orientationClass[Alphabit.currentOrientation];
   },
   transform(step) {
     let nextPosition = {
-      x: AlphaBit.currentPosition.x + step.x * map.cellSize.x,
-      y: AlphaBit.currentPosition.y + step.y * map.cellSize.y
+      x: Alphabit.currentPosition.x + step.x * map.cellSize.x,
+      y: Alphabit.currentPosition.y + step.y * map.cellSize.y
     };
     if(map.isInMap(nextPosition)) {
-      AlphaBit.setPosition(nextPosition);
+      Alphabit.setPosition(nextPosition);
       return true;
     }
     return false;
   },
   transformLeft() {
-    return AlphaBit.transform({
+    return Alphabit.transform({
       x: -1,
       y: 0
     });
   },
   transformTop() {
-    return AlphaBit.transform({
+    return Alphabit.transform({
       x: 0,
       y: -1
     });
   },
   transformRight() {
-    return AlphaBit.transform({
+    return Alphabit.transform({
       x: 1,
       y: 0
     });
   },
   transformBottom() {
-    return AlphaBit.transform({
+    return Alphabit.transform({
       x: 0,
       y: 1
     });
   },
   faceToLeft() {
-    AlphaBit.currentOrientation = 3;
-    AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
+    Alphabit.currentOrientation = 3;
+    Alphabit.instance.className = Alphabit.orientationClass[Alphabit.currentOrientation];
   },
   faceToTop() {
-    AlphaBit.currentOrientation = 0;
-    AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
+    Alphabit.currentOrientation = 0;
+    Alphabit.instance.className = Alphabit.orientationClass[Alphabit.currentOrientation];
   },
   faceToRight() {
-    AlphaBit.currentOrientation = 1;
-    AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
+    Alphabit.currentOrientation = 1;
+    Alphabit.instance.className = Alphabit.orientationClass[Alphabit.currentOrientation];
   },
   faceToBottom() {
-    AlphaBit.currentOrientation = 2;
-    AlphaBit.instance.className = AlphaBit.orientationClass[AlphaBit.currentOrientation];
+    Alphabit.currentOrientation = 2;
+    Alphabit.instance.className = Alphabit.orientationClass[Alphabit.currentOrientation];
   },
   moveLeft() {
-    AlphaBit.faceToLeft();
-    return AlphaBit.go();
+    Alphabit.faceToLeft();
+    return Alphabit.go();
   },
   moveTop() {
-    AlphaBit.faceToTop();
-    return AlphaBit.go();
+    Alphabit.faceToTop();
+    return Alphabit.go();
   },
   moveRight() {
-    AlphaBit.faceToRight();
-    return AlphaBit.go();
+    Alphabit.faceToRight();
+    return Alphabit.go();
   },
   moveBottom() {
-    AlphaBit.faceToBottom();
-    return AlphaBit.go();
+    Alphabit.faceToBottom();
+    return Alphabit.go();
   }
 
 }

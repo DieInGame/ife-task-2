@@ -16,6 +16,7 @@ function submitCommand(command, cb) {
     if(CommandList[i].test(command)) {
       CommandList[i].action();
       cb && cb();
+      return;
     }
   }
   cb && cb({ message: 'command not found'});
@@ -27,20 +28,23 @@ document.querySelector('.toolbar .run').addEventListener('click', function() {
     if(lineIndex >= lines.length) {
       return;
     }
+    let lineNumberElement = editor.lineNumbers.children[lineIndex];
+    lineNumberElement.className = 'running';
     let line = lines[lineIndex];
     line = line.replace(/</g, "$lt;").replace(/>/g, "$gt;"); // avoid script injection attack
     let command = line.split(/\s+/).join(" "); // remove duplicate space
     if(command) {
       submitCommand(command, function(err) {
         if(err) {
-          editor.lineNumbers.children[lineIndex].classList.add('warning');
+          lineNumberElement.className = 'warning';
+          Output.error(err.message + ' at line ' + (lineIndex+1));
         } else {
-          editor.lineNumbers.children[lineIndex].classList.remove('warning');
+          window.setTimeout(function() {
+            lineNumberElement.className = '';
+            run(lineIndex + 1);
+          }, 750);
         }
       })
     }
-    window.setTimeout(function() {
-      run(lineIndex + 1);
-    }, 750);
   })(0);
 });

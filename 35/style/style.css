@@ -258,4 +258,33 @@ tr:first-child td, tr td:first-child {
 
 .editor  .board .line-nums span {
   display: block;
+  position: relative;
+}
+
+.editor .board .line-nums span.warning {
+  color: #F44336;
+}
+
+.editor .board .line-nums span.running::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: -7px;
+  margin-top: -5px;
+  border-left: 5px solid #4CAF50;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.editor .board .line-nums span.warning::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: -7px;
+  margin-top: -5px;
+  border-left: 5px solid #F44336;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
 }

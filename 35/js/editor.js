@@ -34,7 +34,6 @@ var Editor = function(editorInfo) {
       height = this.minHeight;
     }
     this.textarea.style.height = height + 'px';
-    console.log(height);
     this.lines = this.textarea.value.split(/\r*\n/);
     while(this.lineCount != this.lines.length) {
       if(this.lineCount < this.lines.length) {
@@ -48,4 +47,10 @@ var Editor = function(editorInfo) {
       }
     }
   });
+
+  this.textarea.value = "";
+  this.lineCount = 1;
+  var numbersNode = document.createElement('span');
+  numbersNode.innerHTML = '1';
+  this.lineNumbers.appendChild(numbersNode);
 };

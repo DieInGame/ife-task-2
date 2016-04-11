@@ -58,3 +58,12 @@ var Editor = function(editorInfo) {
 Editor.prototype.getLines = function() {
   return this.lines;
 }
+
+Editor.prototype.reset = function() {
+  this.textarea.value = "";
+  this.lineCount = 1;
+  var numbersNode = document.createElement('span');
+  numbersNode.innerHTML = '1';
+  this.lineNumbers.innerHTML = '';
+  this.lineNumbers.appendChild(numbersNode);
+}

@@ -48,3 +48,7 @@ document.querySelector('.toolbar .run').addEventListener('click', function() {
     }
   })(0);
 });
+
+document.querySelector('.toolbar .reset').addEventListener('click', function() {
+  editor.reset();
+});

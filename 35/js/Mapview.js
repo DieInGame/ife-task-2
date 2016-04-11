@@ -241,17 +241,8 @@
     }
   }
 
-  // document.getElementsByClassName("command-input")[0].onkeypress = function(e) {
-  //   var keycode = e.keycode || e.which;
-  //   if(keycode === 13) { // if Enter key pressed
-  //     submitCommand(this.value);
-  //     this.value = ""; // clear input field
-  //   }
-  // };
-
   AlphaBit.setPosition(map.origin.x, map.origin.y);
   AlphaBit.currentOrientation = 1;
   AlphaBit.instance.className = "facing-east";
 
-  // document.getElementsByClassName(" command-input")[0].focus();
 })();

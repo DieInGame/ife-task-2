@@ -54,3 +54,7 @@ var Editor = function(editorInfo) {
   numbersNode.innerHTML = '1';
   this.lineNumbers.appendChild(numbersNode);
 };
+
+Editor.prototype.getLines = function() {
+  return this.lines;
+}

@@ -14,7 +14,7 @@ var editor = new Editor({
 function submitCommand(command, cb) {
   for(let i = 0, len = CommandList.length; i < len; i++) {
     if(CommandList[i].test(command)) {
-      CommandList[i].action();
+      CommandList[i].action(command);
       cb && cb();
       return;
     }

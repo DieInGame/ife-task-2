@@ -10,7 +10,7 @@ var editor = new Editor({
   minWidth: 550,
   minHeight: 620
 });
-
+/*
 function submitCommand(command, cb) {
   for(let i = 0, len = CommandList.length; i < len; i++) {
     if(CommandList[i].test(command)) {
@@ -20,6 +20,37 @@ function submitCommand(command, cb) {
     }
   }
   cb && cb({ message: 'command not found'});
+}
+*/
+function submitCommand(command, cb) {
+
+    var number=command.toString().charAt(command.length-1);
+    if (!isNaN(number)) {//最后一位是数字
+        var com =command.substring(0,command.length-1).trim();
+
+        for(let i = 0, len = CommandList.length; i < len; i++) {
+            for(let j=0;j<number;j++){
+                if(CommandList[i].test(com)) {
+                    CommandList[i].action();
+                    cb && cb();
+                }
+            }
+            return;
+        }
+        cb && cb({ message: 'command not found'});
+    }
+    else{//最后一位不是数字
+
+        for(let i = 0, len = CommandList.length; i < len; i++) {
+                if(CommandList[i].test(command)) {
+                    CommandList[i].action();
+                    cb && cb();
+                }
+            return;
+        }
+        cb && cb({ message: 'command not found'});
+
+    }
 }
 
 document.querySelector('.toolbar .run').addEventListener('click', function() {

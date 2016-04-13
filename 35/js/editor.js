@@ -66,4 +66,5 @@ Editor.prototype.reset = function() {
   numbersNode.innerHTML = '1';
   this.lineNumbers.innerHTML = '';
   this.lineNumbers.appendChild(numbersNode);
+  this.lines = [''];
 }

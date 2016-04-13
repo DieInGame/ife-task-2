@@ -8,7 +8,7 @@ var editor = new Editor({
   textarea: document.getElementsByTagName('textarea')[0],
   lineNumbers: document.getElementsByClassName('line-nums')[0],
   minWidth: 550,
-  minHeight: 620
+  minHeight: 220
 });
 
 function submitCommand(command, cb) {
@@ -29,7 +29,7 @@ document.querySelector('.toolbar .run').addEventListener('click', function() {
     if(lineIndex >= lines.length) {
       return;
     }
-    viewport.scrollTop = lineIndex * 20 - 310;
+    viewport.scrollTop = lineIndex * 20 - editor.minHeight / 2;
     let lineNumberElement = editor.lineNumbers.children[lineIndex];
     lineNumberElement.className = 'running';
     let line = lines[lineIndex];

@@ -226,7 +226,7 @@ tr:first-child td, tr td:first-child {
 
 .editor .board textarea {
   min-height: 220px;
-  min-width: 350px;
+  min-width: 550px;
   display: block;
   margin: 0;
   padding: 0;

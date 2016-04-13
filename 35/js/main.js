@@ -24,10 +24,12 @@ function submitCommand(command, cb) {
 
 document.querySelector('.toolbar .run').addEventListener('click', function() {
   var lines = editor.getLines();
+  var viewport = document.getElementsByClassName('board')[0];
   (function run(lineIndex) {
     if(lineIndex >= lines.length) {
       return;
     }
+    viewport.scrollTop = lineIndex * 20 - 310;
     let lineNumberElement = editor.lineNumbers.children[lineIndex];
     lineNumberElement.className = 'running';
     let line = lines[lineIndex];

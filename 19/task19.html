@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            display: flex;
+            align-items: flex-end;
+            margin:5px;
+        }
+        #box{
+            width: 25px;
+            float: left;
+            color:#ffffff;
+            text-align: center;
+            display: flex;
+            align-items: flex-end;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="input" placeholder="请输入数字，范围：10-100"/>
+<input type="button" id="leftIn" value="左侧入"/>
+<input type="button" id="rightIn" value="右侧入"/>
+<input type="button" id="leftOut" value="左侧出"/>
+<input type="button" id="rightOut" value="右侧出"/>
+<input type="button" id="random" value="随机生成"/>
+<input type="button" id="bubbleSort" value="排序"/>
+<div id="result"></div>
+<script>
+    "use strict";
+    var data=[];
+    function $(id){
+        return document.getElementById(id);
+    }
+    $("leftIn").onclick=function(){
+        if (!checkInput()) return;
+        if (data.length >= 60) {
+            alert("元素超过60个");
+            return ;
+        }
+        data.unshift(checkInput());
+        render();
+    }
+    $("leftOut").onclick=function(){
+        data.shift();
+        render();
+    }
+    $("rightIn").onclick=function(){
+        if (!checkInput) return;
+        if (data.length >= 60) {
+            alert("元素超过60个");
+            return ;
+        }
+        data.push(checkInput());
+        render();
+    }
+    $("rightOut").onclick=function(){
+        data.pop();
+        render();
+    }
+    $("random").onclick=function(){
+        for(i=0;i<30;i++){
+            data[i]=parseInt(Math.random()*91+10);
+        }
+        render();
+    }
+    $("bubbleSort").onclick=function(){
+        var i = 0, j = 1;
+        var clear = setInterval(run, 1);
+        function run() {
+            if (i < data.length) {
+                if (j < data.length) {
+                    if (data[i] > data[j]) {
+                        //var tmp = data[i];
+                        //data[i] = data[j];
+                       // data[j] = tmp;
+                        [data[i],data[j]]=[data[j],data[i]];
+                        render();
+                        return;
+                    }
+                    j++;
+                } else {
+                    i++;
+                    j = i + 1;
+                }
+            } else {
+                clearInterval(clear);
+            }
+        }
+    }
+    function render(){
+        var res='';
+        for (var i=0;i<data.length;i++){
+            var h=parseInt(data[i]*2);
+            function havColor(h){
+                if(h<100){
+                    return 'red';
+                }
+               else {
+                    return 'blue';
+                }
+            }
+            res += "<div id='box' style='height:" +h + "px  ;background-color:"+havColor(h)+"'>" + data[i] + "</div>"
+        }
+        $("result").innerHTML=res;
+    }
+
+    function checkInput() {
+        var input = $('input').value.trim();
+        if (!input.match(/^\d/) || parseInt(input) < 10 || parseInt(input) > 100) {
+            alert("输入不合法！");
+            return false;
+        }
+        return input;
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 26-27-28</title>
+  <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+  <div id="container">
+    <canvas id="universe" width="400" height="400"></canvas>
+    <div id="console">
+      <div class="console-log">
+        <table>
+            <tr>
+                <th>Spacecraft ID</th>
+                <th>Dynamical Sys</th>
+                <th>Energy Sys</th>
+                <th>Current State</th>
+                <th>Remaining</th>
+            </tr>
+            <tr></tr>
+        </table>
+      </div>
+      <div class="console-create">
+          <div>Dynamical System:
+             <lable>Mars<input type="radio" value="Mars"></lable>
+             <lable>Luppiter<input type="radio" value="Luppiter"></lable>
+             <lable>Apollo<input type="radio" value="Apollo"></lable>
+          </div>
+          <div>DEnergy System:
+             <input type="radio" value="A">
+             <input type="radio" value="B">
+             <input type="radio" value="C">
+          </div>
+          <button class="new-spaceship">New Spaceship</button>
+      </div>
+      <div class="console-panel"></div>
+    </div>
+  </div>
+ 
+  <script src="./js/renderer.js"></script>
+  <script src="./js/commander.js"></script>
+  <script src="./js/spacecraft.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+</html>

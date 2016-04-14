@@ -6,7 +6,8 @@ class Commander{
     constructor(){
         this._spacecrafts = [];
         this._available_id= [];
-        this._spacecraft_model = null;  //飞船类型
+        // this._max_crafts  = 4;
+
         this._latency     = 300;        //消息延迟
         this._fps         = 100;        //刷新率
         this._renderer    = null;       //
@@ -43,7 +44,15 @@ class Commander{
         }
     }
     
-    /*创建飞船*/ 
+    /*创建飞船*/
+    addSpacecraft(){
+        if(this._available_id.length === 0) return false;
+        var id = this._available_id.shift();
+        var dynamic = "";
+        var energy  = "";
+        return this.createSpacecraft(id,dynamic,energy);
+    }
+     
     createSpacecraft(id,dynamic,energy){
         /*飞船各项随机参数*/ 
         var randomRadius = Math.floor(Math.random() * (200 - 70)) + 70; // random radius between 70 and 200
@@ -56,7 +65,8 @@ class Commander{
         }();
         var randomAngle = Math.random() * Math.PI * 2; // random start angle
         
-        var newSpacecraft = new this._spacecraft_model(id, 5, randomRadius, randomAngle, randomColor);
+        var newSpacecraft = new Spacecraft(id, 5, randomRadius, randomAngle, randomColor);
+        newSpacecraft.renderer = 
         this._spacecrafts.push(newSpacecraft);
         return newSpacecraft;
     }
@@ -66,6 +76,11 @@ class Commander{
         window.setTimeout(()=>{
             
         },this.latency);
+    }
+    
+    // 判别是否可以添加更多飞船
+    canCreate(){
+        return this._available_id.length > 0;
     }
     
     /*添加可用的ID库*/ 

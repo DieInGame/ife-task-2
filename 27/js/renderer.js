@@ -2,8 +2,6 @@
 * render 共有渲染方法
 */
 
-var cvs = document.getElementById("universe");
-
 function Renderer(canvas){
     var ctx     = canvas.getContext("2d");
     var _height = canvas.offsetHeight;

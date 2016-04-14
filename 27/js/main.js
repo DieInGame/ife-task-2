@@ -12,8 +12,8 @@ commander.awake();
 * 创建控制面板
 */ 
 function createSpaceshipElement(shipInfo) {
-  var id = shipInfo.id;
-  var color = shipInfo.color;
+  var id = shipInfo._id;
+  var color = shipInfo._color;
   
   var spaceship = document.createElement('div');
   spaceship.className = "spaceship";
@@ -54,14 +54,13 @@ function createSpaceshipElement(shipInfo) {
   
   return spaceship;
 }
-
+// new飞船按钮事件
 var newSpaceshipButton = document.getElementsByClassName("new-spaceship")[0];
-// newSpaceshipButton.disabled = !Commander.getInstance().canCreateSpaceship();
 newSpaceshipButton.addEventListener('click', function(e) {
-//   var shipInfo = Commander.getInstance().createSpaceship();
-//   var spaceshipElement = createSpaceshipElement(shipInfo);
-//   document.getElementsByClassName("console-panel-body")[0].appendChild(spaceshipElement);
-//   newSpaceshipButton.disabled = !Commander.getInstance().canCreateSpaceship();
+  let craft = commander.addSpacecraft();
+  var spaceshipElement = createSpaceshipElement(craft);
+  document.getElementsByClassName("console-panel")[0].appendChild(spaceshipElement);
+  newSpaceshipButton.disabled = !commander.canCreate();
 });
 
 

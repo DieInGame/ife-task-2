@@ -9,7 +9,7 @@ class   Spacecraft{
         this._rotationAngle = angle;
         this.setKind(kind);
         this._color         = color;
-        
+        this._dc            = null;
         this._renderer      = null;
     }
     
@@ -29,6 +29,7 @@ class   Spacecraft{
         if(this._power <=0) { this.stop();}
         //  重绘飞船
         this._active && this._renderer.renderSpaceship(this._power,this._radius,this._rotationAngle,this._color);
+        this.BackTrack();
     }
     
     charge(volumnToAdd) {
@@ -67,6 +68,7 @@ class   Spacecraft{
         this._state = "STOPING";
     }
     destruct() {
+        this._state = "DESTRUCTING";
         this._active = false;
     }
     // 2代处理消息
@@ -86,17 +88,61 @@ class   Spacecraft{
             }
         }
     }
+    
+    /*
+    *返回消息
+    */ 
+    BackTrack(){
+        var msg ={
+            id : this._id,
+          state: this._state,
+          power: this._power
+        };
+        var bus = this.Adaptor(msg);
+        window.setTimeout(()=>{
+            this._dc.Receive(bus);
+        },10);
+    }
+    
+    // 二进制翻译
+    Adaptor(msg){
+         switch(msg.state){
+             case "MOVING":
+                var state = "0001";
+                break;
+             case "STOPING":
+                var state = "0010";
+                break;
+             case "DESTRUCTING":
+                var state = "1100";
+                break;   
+         }
+         
+         var id = msg.id.toString(2);
+         while(id.length <4){
+             id = "0".concat(id);
+         }
+         
+         var power = msg.power.toString(2);
+         while(power.length < 8){
+             power = "0".concat(power);
+         }
+         
+         var bus = id.concat(state,power);
+         return bus;
+     }
+    
     // 二进制解码
     DeAdaptor(str){
         var bus ={
-            f:str.slice(0,4),
-            l:str.slice(4,8)
+            head:str.slice(0,4),
+            body:str.slice(4,8)
         } ;
-        var id = bus.f;
+        var id = bus.head;
         var cmd = {"0001":"move","0010":"stop","1100":"destruct"};
         return {
             id:parseInt(id,2),
-            command:cmd[bus.l]
+            command:cmd[bus.body]
         };
         
     }
@@ -107,6 +153,12 @@ class   Spacecraft{
     get renderer(){
         return this._renderer;
     }
-    
+    // 设置DC
+    set DC(dc){
+        this._dc = dc;
+    }
+    get DC(){
+        return this._dc;
+    }
     
 }

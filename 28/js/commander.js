@@ -11,6 +11,7 @@ class Commander{
         this._latency     = 300;        //消息延迟
         this._fps         = 500;        //刷新率
         this._renderer    = null;       //
+        this._dc          = new DataCentre();
     }
     
     /*check step*/ 
@@ -49,10 +50,14 @@ class Commander{
         }
     }
     
-    /*创建飞船*/
+    /*
+    *创建飞船
+    *并向数据中心备份数据
+    */
     addSpacecraft(craftkind){
         if(this._available_id.length === 0) return false;
         var id = this._available_id.shift();
+        this._dc.saveInfo(id,craftkind);
         return this.createSpacecraft(id,craftkind);
     }
      
@@ -70,6 +75,7 @@ class Commander{
         
         var newSpacecraft = new Spacecraft(id, craftkind, randomRadius, randomAngle, randomColor);
         newSpacecraft.renderer = this._renderer;
+        newSpacecraft.DC = this._dc;
         this._spacecrafts.push(newSpacecraft);
         return newSpacecraft;
     }

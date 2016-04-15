@@ -1,0 +1,7 @@
+.console-create{
+    border: solid 1px grey;
+    margin: 10px 2px;
+}
+.console-create > div {
+    margin: 5px 0px;
+}

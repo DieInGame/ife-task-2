@@ -1,14 +1,13 @@
 class   Spacecraft{
-    constructor(id, speed, radius, angle=0, color="#FFFFFF"){
+    constructor(id, kind, radius, angle=0, color="#FFFFFF"){
+        
         this._id            = id;
         this._power         = 100;
         this._state         = "STOPING";
         this._active        = true;
         this._radius        = radius;
-        this._angularVelocity = speed / this._radius; // Convert linear velocity to angular velocity
         this._rotationAngle = angle;
-        this._consumption   = 3;
-        this._powerGrowth   = 1;
+        this.setKind(kind);
         this._color         = color;
         
         this._renderer      = null;
@@ -43,6 +42,21 @@ class   Spacecraft{
         this._power = 0;
         }
     }
+    setKind(k){
+            var dynamic={
+                0:{speed:3,consum:3},
+                1:{speed:4,consum:5},
+                2:{speed:5,consum:7}
+            };
+            var energy={
+                "A":{charge:1},
+                "B":{charge:2},
+                "C":{charge:3}
+            };
+        this._angularVelocity = dynamic[k.dynamic].speed / this._radius; // Convert linear velocity to angular velocity
+        this._consumption   = dynamic[k.dynamic].consum;
+        this._powerGrowth   = energy[k.energy].charge;
+    }
     
     move() {
         if(this._power > 0) {
@@ -55,10 +69,11 @@ class   Spacecraft{
     destruct() {
         this._active = false;
     }
-    // 1代处理消息
+    // 2代处理消息
     messageHandler(message) {
-        if(message.id === this._id && this._active) {
-            switch(message.command) {
+        var msg = this.DeAdaptor(message);
+        if(msg.id === this._id && this._active) {
+            switch(msg.command) {
                 case 'move':
                 this.move();
                 break;
@@ -71,7 +86,20 @@ class   Spacecraft{
             }
         }
     }
-    
+    // 二进制解码
+    DeAdaptor(str){
+        var bus ={
+            f:str.slice(0,4),
+            l:str.slice(4,8)
+        } ;
+        var id = bus.f;
+        var cmd = {"0001":"move","0010":"stop","1100":"destruct"};
+        return {
+            id:parseInt(id),
+            command:cmd[bus.l]
+        };
+        
+    }
     // 设置renderer
     set renderer(r){
         this._renderer = r;

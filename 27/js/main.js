@@ -70,7 +70,7 @@ spaceshipAttribute.addEventListener('change',function(e) {
 // new飞船按钮事件
 var newSpaceshipButton = document.getElementsByClassName("new-spaceship")[0];
 newSpaceshipButton.addEventListener('click', function(e) {
-  let craft = commander.addSpacecraft();
+  let craft = commander.addSpacecraft(craft_kind);
   var spaceshipElement = createSpaceshipElement(craft);
   document.getElementsByClassName("console-panel")[0].appendChild(spaceshipElement);
   newSpaceshipButton.disabled = !commander.canCreate();

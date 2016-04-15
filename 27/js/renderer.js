@@ -27,12 +27,16 @@ function Renderer(canvas){
         ctx.closePath();
     }
     function renderSpaceship(power, radius, angle, color) {
+        
+        var selfradius = arguments[4] || _len_craft;
+        
+        
         ctx.save();
         
         ctx.beginPath();
-        ctx.translate(__width / 2, __height / 2);
+        ctx.translate(_width / 2, _height / 2);
         ctx.rotate(angle);
-        ctx.arc(0, -radius, __radiusOfSpaceships, 0, 2 * Math.PI);
+        ctx.arc(0, -radius, selfradius, 0, 2 * Math.PI);
         ctx.fillStyle = color;
         ctx.fill();
         ctx.closePath();

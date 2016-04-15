@@ -44,16 +44,29 @@ function createSpaceshipElement(shipInfo) {
   spaceship.addEventListener('click', function(e) {
     if(e.target.className == "move") {
       console.log("move",id);
+      commander.createMsg(id,"move");
     } else if(e.target.className == "stop") {
       console.log("stop",id);
+      commander.createMsg(id,"stop");
     } else if(e.target.className == "destruct") {
-     
+     commander.createMsg(id,"destruct");
      console.log("destruct",id);
+     spaceship.remove();
+     commander.addAvailableId(id);
+     newSpaceshipButton.disabled = false;
     }
   });
   
   return spaceship;
 }
+
+// 飞船设定
+var craft_kind = {dynamic:0,energy:"A"};
+var spaceshipAttribute = document.getElementsByClassName("console-create")[0];
+spaceshipAttribute.addEventListener('change',function(e) {
+    console.log(e.target.value);
+    craft_kind[e.target.name] = e.target.value;
+});
 // new飞船按钮事件
 var newSpaceshipButton = document.getElementsByClassName("new-spaceship")[0];
 newSpaceshipButton.addEventListener('click', function(e) {
@@ -62,6 +75,7 @@ newSpaceshipButton.addEventListener('click', function(e) {
   document.getElementsByClassName("console-panel")[0].appendChild(spaceshipElement);
   newSpaceshipButton.disabled = !commander.canCreate();
 });
+
 
 
 

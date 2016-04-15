@@ -9,7 +9,7 @@ class Commander{
         // this._max_crafts  = 4;
 
         this._latency     = 300;        //消息延迟
-        this._fps         = 100;        //刷新率
+        this._fps         = 500;        //刷新率
         this._renderer    = null;       //
     }
     
@@ -31,12 +31,17 @@ class Commander{
         // call update()
         window.setInterval(()=>{
            this.update(); 
-        },this.fps);
+        },this._fps);
     }
     
     update(){
+        this._renderer.renderBackground();
+        this._renderer.renderPlanet();
         // remove all unactive ship
-        this._spacecrafts = this._spacecrafts.filter((craft)=>{craft._active});
+        this._spacecrafts = this._spacecrafts.filter((craft)=>{
+            
+            return craft._active
+        });
         // update spacecrafts
         for(var i =0; i < this._spacecrafts.length;i++){
             let craft = this._spacecrafts[i];
@@ -66,15 +71,25 @@ class Commander{
         var randomAngle = Math.random() * Math.PI * 2; // random start angle
         
         var newSpacecraft = new Spacecraft(id, 5, randomRadius, randomAngle, randomColor);
-        newSpacecraft.renderer = 
+        newSpacecraft.renderer = this._renderer;
         this._spacecrafts.push(newSpacecraft);
         return newSpacecraft;
     }
     
     /*消息传输*/
-    broadcastMsg(bus){
+    createMsg(int,str) {
+        var msg = {id:int,command:str};
+        this.broadcastMsg(msg);
+    }
+    /**/ 
+    broadcastMsg(msg){
         window.setTimeout(()=>{
-            
+            for(let x in this._spacecrafts){
+                // 信息成功率
+                let successRate = 0.7;
+                Math.random() < successRate &&
+                this._spacecrafts[x].messageHandler(msg);
+            }
         },this.latency);
     }
     
@@ -90,6 +105,10 @@ class Commander{
     get availableId(){
         return this._available_id;
     }
+    addAvailableId(id) {
+        this._available_id.push(id);
+    }
+    
     /*add renderer*/ 
     set renderer(r){
         this._renderer = r;

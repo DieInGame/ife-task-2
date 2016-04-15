@@ -95,7 +95,7 @@ class   Spacecraft{
         var id = bus.f;
         var cmd = {"0001":"move","0010":"stop","1100":"destruct"};
         return {
-            id:parseInt(id),
+            id:parseInt(id,2),
             command:cmd[bus.l]
         };
         

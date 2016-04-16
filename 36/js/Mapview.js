@@ -1,6 +1,7 @@
 "use strict";
 
 var map = {
+  htmlElement: document.querySelector('.map tbody'),
   row: 16,
   col: 16,
   origin: {
@@ -25,13 +26,43 @@ map.isInMap = function(pos) {
 
 map.setBlock = function(pos, cb) {
   if(map.isInMap(pos)) {
-    this.data[pos.x][pos.y] = 1;
+    let row = Math.floor(pos.y / this.cellSize.y);
+    let col = Math.floor(pos.x / this.cellSize.x);
+    if(this.data[row] && this.data[row][col]) {
+      cb && cb({message: 'not empty'});
+    } else {
+      if(!this.data[row]) this.data[row] = [];
+      this.data[row][col] = 1;
+      this.htmlElement.children[row].children[col].className = 'block';
+      cb && cb();
+    }
+  } else {
+    cb && cb({message: 'Out of range'});
+  }
+}
+
+map.clearBlock = function(pos, cb) {
+  if(map.isInMap(pos)) {
+    this.data[pos.x][pos.y] = 0;
     cb && cb();
   } else {
     cb && cb({message: 'Out of range'});
   }
 }
 
+map.setBlockColor = function(pos, color, cb) {
+  if(map.isInMap(pos)) {
+    if(this.data[pos.x][pos.y]) {
+      let cell = this.htmlElement.children[pos.y + 1].children[pos.x + 1];
+      cell.style.background = color;
+      cb && cb();
+    } else {
+      cb && cb({message: 'no block to paint'});
+    }
+  } else {
+     cb && cb({message: 'Out of range'});
+  }
+}
 
 var Output = {
   log(message) {

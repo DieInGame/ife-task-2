@@ -118,6 +118,19 @@ var Alphabit = {
   moveBottom() {
     Alphabit.faceToBottom();
     return Alphabit.go();
+  },
+  buildBlock(cb) {
+    let pos = {
+      x: Alphabit.currentPosition.x + Alphabit.stepForword[Alphabit.currentOrientation].x * map.cellSize.x,
+      y: Alphabit.currentPosition.y + Alphabit.stepForword[Alphabit.currentOrientation].y * map.cellSize.y
+    };
+    map.setBlock(pos, cb);
+  },
+  paintBlock(color, cb) {
+    let pos = {
+      x: Alphabit.currentPosition.x + Alphabit.stepForword[Alphabit.currentOrientation].x * map.cellSize.x,
+      y: Alphabit.currentPosition.y + Alphabit.stepForword[Alphabit.currentOrientation].y * map.cellSize.y
+    };
+    map.setBlockColor(pos, color, cb);
   }
-
 }

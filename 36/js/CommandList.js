@@ -64,5 +64,15 @@ var CommandList = [
         }
       }
     }
+  },
+  {
+    test: (command) => command.toUpperCase() === 'BUILD',
+    action: (command) => {
+      Alphabit.buildBlock((err) => {
+        if(err) {
+          console.log('error: ', err.message);
+        }
+      });
+    }
   }
 ];

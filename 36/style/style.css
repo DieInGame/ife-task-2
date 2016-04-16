@@ -56,6 +56,10 @@ body { margin: 0; padding: 0; position: relative; height: 824px; background: #00
   background: #102711;
 }
 
+.map tr td.block {
+  background: #00FF00;
+}
+
 tr:first-child td, tr td:first-child {
   background: transparent;
   border: 0;

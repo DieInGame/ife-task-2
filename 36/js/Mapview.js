@@ -24,16 +24,14 @@ map.isInMap = function(pos) {
   return (pos.x < map.size.x && pos.x >= map.origin.x && pos.y < map.size.y && pos.y >= map.origin.y);
 };
 
-map.setBlock = function(pos, cb) {
-  if(map.isInMap(pos)) {
-    let row = Math.floor(pos.y / this.cellSize.y);
-    let col = Math.floor(pos.x / this.cellSize.x);
+map.setBlock = function(row, col, cb) {
+  if(row < this.row && col < this.col) {
     if(this.data[row] && this.data[row][col]) {
       cb && cb({message: 'not empty'});
     } else {
       if(!this.data[row]) this.data[row] = [];
       this.data[row][col] = 1;
-      this.htmlElement.children[row].children[col].className = 'block';
+      this.htmlElement.children[row + 1].children[col + 1].className = 'block';
       cb && cb();
     }
   } else {
@@ -41,21 +39,20 @@ map.setBlock = function(pos, cb) {
   }
 }
 
-map.clearBlock = function(pos, cb) {
-  if(map.isInMap(pos)) {
-    this.data[pos.x][pos.y] = 0;
-    cb && cb();
-  } else {
-    cb && cb({message: 'Out of range'});
+map.clearBlock = function(row, col) {
+  if(row < this.row && col < this.col) {
+    if(!this.data[row]) this.data[row] = [];
+    this.data[row][col] = 0;
+    let cell = this.htmlElement.children[row + 1].children[col + 1];
+    cell.className = '';
+    cell.removeAttribute('style');
   }
 }
 
-map.setBlockColor = function(pos, color, cb) {
-  if(map.isInMap(pos)) {
-    let row = Math.floor(pos.y / this.cellSize.y);
-    let col = Math.floor(pos.x / this.cellSize.x);
+map.setBlockColor = function(row, col, color, cb) {
+  if(row < this.row && col < this.col) {
     if(this.data[row] && this.data[row][col]) {
-      let cell = this.htmlElement.children[row].children[col];
+      let cell = this.htmlElement.children[row + 1].children[col + 1];
       cell.style.background = color;
       cb && cb();
     } else {
@@ -64,6 +61,10 @@ map.setBlockColor = function(pos, color, cb) {
   } else {
      cb && cb({message: 'Out of range'});
   }
+}
+
+map.reset = function() {
+   for(let i = 0; i < this.row; i++) for(let j = 0; j < this.col; j++) map.clearBlock(i, j);
 }
 
 var Output = {

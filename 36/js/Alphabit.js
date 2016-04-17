@@ -124,13 +124,17 @@ var Alphabit = {
       x: Alphabit.currentPosition.x + Alphabit.stepForword[Alphabit.currentOrientation].x * map.cellSize.x,
       y: Alphabit.currentPosition.y + Alphabit.stepForword[Alphabit.currentOrientation].y * map.cellSize.y
     };
-    map.setBlock(pos, cb);
+    let row = Math.floor(pos.y / this.cellSize.y) - 1;
+    let col = Math.floor(pos.x / this.cellSize.x) - 1;
+    map.setBlock(row, col, cb);
   },
   paintBlock(color, cb) {
     let pos = {
       x: Alphabit.currentPosition.x + Alphabit.stepForword[Alphabit.currentOrientation].x * map.cellSize.x,
       y: Alphabit.currentPosition.y + Alphabit.stepForword[Alphabit.currentOrientation].y * map.cellSize.y
     };
-    map.setBlockColor(pos, color, cb);
+    let row = Math.floor(pos.y / this.cellSize.y) - 1;
+    let col = Math.floor(pos.x / this.cellSize.x) - 1;
+    map.setBlockColor(row, col, color, cb);
   }
 }

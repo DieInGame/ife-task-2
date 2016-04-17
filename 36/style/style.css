@@ -58,6 +58,7 @@ body { margin: 0; padding: 0; position: relative; height: 824px; background: #00
 
 .map tr td.block {
   background: #00FF00;
+  transition: background .2s;
 }
 
 tr:first-child td, tr td:first-child {

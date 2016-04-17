@@ -79,11 +79,36 @@ var CommandList = [
     test: (command) => /BRU #[A-Fa-f0-9]{6}/.test(command.toUpperCase()),
     action: (command) => {
       let hexColorCode = command.toUpperCase().match(/BRU (#[A-Fa-f0-9]{6})/)[1];
-      console.log(hexColorCode);
       Alphabit.paintBlock(hexColorCode, (err) => {
         if(err) {
           console.log('error: ', err.message);
         }
+      });
+    }
+  },
+  {
+    test: (command) => /TOOO* YOUNG/.test(command.toUpperCase()),
+    action: (command) => {
+      map.reset(); // clear map
+      let inRow = Math.floor(Alphabit.currentPosition.y / map.cellSize.y) - 1;
+      let inCol = Math.floor(Alphabit.currentPosition.x / map.cellSize.x) - 1;
+      let posCnt = command.toUpperCase().match(/TOO(O*) YOUNG/)[1].length * 2 + 5; // how many position should generate
+      if(posCnt >= (map.row * map.col)) posCnt = map.row * map.col - 1;
+      let randomPosLst = ((lstLength) => {
+        let lst = [];
+        for(let i = 0; i < lstLength; i++) lst.push(i);
+        for(let i = lstLength - 1; i > 0; i--) {
+          let j = Math.floor(Math.random() * (i + 1));
+          [lst[i], lst[j]] = [lst[j], lst[i]];
+        }
+        return lst;
+      })(map.row * map.col);
+      randomPosLst.splice(randomPosLst.indexOf(inRow * inCol), 1); // remove position Alphlbit on
+      randomPosLst = randomPosLst.slice(0, posCnt);
+      randomPosLst.forEach((num) => {
+        let row = Math.floor(num / map.col);
+        let col = num % map.col;
+        map.setBlock(row, col);
       });
     }
   }

@@ -74,5 +74,17 @@ var CommandList = [
         }
       });
     }
+  },
+  {
+    test: (command) => /BRU #[A-Fa-f0-9]{6}/.test(command.toUpperCase()),
+    action: (command) => {
+      let hexColorCode = command.toUpperCase().match(/BRU (#[A-Fa-f0-9]{6})/)[1];
+      console.log(hexColorCode);
+      Alphabit.paintBlock(hexColorCode, (err) => {
+        if(err) {
+          console.log('error: ', err.message);
+        }
+      });
+    }
   }
 ];

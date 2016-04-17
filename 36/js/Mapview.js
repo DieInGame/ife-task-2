@@ -52,8 +52,10 @@ map.clearBlock = function(pos, cb) {
 
 map.setBlockColor = function(pos, color, cb) {
   if(map.isInMap(pos)) {
-    if(this.data[pos.x][pos.y]) {
-      let cell = this.htmlElement.children[pos.y + 1].children[pos.x + 1];
+    let row = Math.floor(pos.y / this.cellSize.y);
+    let col = Math.floor(pos.x / this.cellSize.x);
+    if(this.data[row] && this.data[row][col]) {
+      let cell = this.htmlElement.children[row].children[col];
       cell.style.background = color;
       cb && cb();
     } else {

@@ -14,8 +14,7 @@ var editor = new Editor({
 function submitCommand(command, cb) {
   for(let i = 0, len = CommandList.length; i < len; i++) {
     if(CommandList[i].test(command)) {
-      CommandList[i].action(command);
-      cb && cb();
+      CommandList[i].action(command, cb);
       return;
     }
   }
@@ -41,10 +40,8 @@ document.querySelector('.toolbar .run').addEventListener('click', function() {
           lineNumberElement.className = 'warning';
           Output.error(err.message + ' at line ' + (lineIndex+1));
         } else {
-          window.setTimeout(function() {
-            lineNumberElement.className = '';
-            run(lineIndex + 1);
-          }, 750);
+          lineNumberElement.className = '';
+          run(lineIndex + 1);
         }
       })
     }

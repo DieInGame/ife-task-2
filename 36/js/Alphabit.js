@@ -179,6 +179,7 @@ var Alphabit = {
         };
         if(next.row >= 0 && next.row < map.row && next.col >= 0 && next.col < map.col) { // next postion is inside map
           if(pathTree[next.row] && pathTree[next.row][next.col] !== undefined) continue;
+          if(map.data[next.row] && map.data[next.row][next.col] === 1) continue;
 
           if(!pathTree[next.row]) pathTree[next.row] = [];
           pathTree[next.row][next.col] = next.dir;

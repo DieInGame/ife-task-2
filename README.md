@@ -12,4 +12,4 @@
 | 33 | [@theJian](http://github.com/thejian) | 已提交 |
 | 34 | [@theJian](http://github.com/thejian) | 已提交 |
 | 35 | [@theJian](http://github.com/thejian) | 已提交 |
-| 36 | [@theJian](http://github.com/thejian) |  |
+| 36 | [@theJian](http://github.com/thejian) | 已提交 |

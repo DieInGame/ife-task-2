@@ -121,7 +121,7 @@ var CommandList = [
         }
         return lst;
       })(map.row * map.col);
-      randomPosLst.splice(randomPosLst.indexOf(inRow * inCol), 1); // remove position Alphlbit on
+      randomPosLst.splice(randomPosLst.indexOf(inRow * map.col + inCol), 1); // remove position Alphlbit on
       randomPosLst = randomPosLst.slice(0, posCnt);
       randomPosLst.forEach((num) => {
         let row = Math.floor(num / map.col);

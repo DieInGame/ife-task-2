@@ -69,6 +69,7 @@ class   Spacecraft{
     }
     destruct() {
         this._state = "DESTRUCTING";
+        this.BackTrack();
         this._active = false;
     }
     // 2代处理消息

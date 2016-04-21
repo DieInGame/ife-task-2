@@ -1,7 +1,7 @@
 // 单例化数据中心类
 class DataCentre {
     constructor(){
-        this._render_list = {};
+        
         this._info_list = {};
         this._name       = "DC is not Marvel";
     }
@@ -16,7 +16,7 @@ class DataCentre {
             let info = this._info_list[x];
             
             this.render(info);
-            this._render_list[x] = true;
+            
         }
     }
     
@@ -27,7 +27,7 @@ class DataCentre {
             foot:str.slice(8,16)
         } ;
         var id = bus.head;
-        var cmd = {"0001":"move","0010":"stop","1100":"destruct"};
+        var cmd = {"0001":"move","0010":"stop","1100":"destructed"};
         return {
             id:parseInt(id,2),
             state:cmd[bus.body],
@@ -43,15 +43,14 @@ class DataCentre {
         var e = info.energy;
         var state = info.state;
         var power = info.power;
-        if(this._render_list[id] === true){
+        
             this.refreshNode(id,d,e,state,power);
-        }else{
-            this.createNode(id,d,e,state,power);    
-        }
+        
         
         
     }
     createNode(id,d,e,state,power){
+        if(!id) return;
         var table = document.getElementById("console-log");
         var tr    = document.createElement("tr");
         tr.id = id;
@@ -74,11 +73,15 @@ class DataCentre {
     }
     refreshNode(id,d,e,state,power){
         var tr   = document.getElementById(id);
-        var info = tr.getElementsByTagName("td");
-        info[1].innerHTML = d;
-        info[2].innerHTML = e;
-        info[3].innerHTML = state;
-        info[4].innerHTML = power;
+        if(!tr) { 
+            this.createNode(id,d,e,state,power);
+        }else{
+            var info = tr.getElementsByTagName("td");
+            info[1].innerHTML = d;
+            info[2].innerHTML = e;
+            info[3].innerHTML = state;
+            info[4].innerHTML = power;
+        }
     }
     
     saveInfo(id,kind){
